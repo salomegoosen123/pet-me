@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Mia's Games
+Comment=Start the game server and open the arcade
+Exec=/home/mia/pet-me/start-games.sh
+Path=/home/mia/pet-me
+Icon=applications-games
+Terminal=true
+Categories=Game;

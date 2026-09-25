@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saydee the dog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #BFE6FF; --grass: #7BC96F; --grass-dark: #4E9A45; --sun: #FFD23F;
+    --ink: #22335B; --card: #FFFFFF; --bar-bg: #E6EEF7;
+    --full: #5CC96B; --mid: #FFB23F; --low: #FF5E5E;
+    --fur: #D9913F; --fur-dark: #9A5B22;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --sky: #1C2A55; --grass: #2F6B3A; --grass-dark: #1F4C28;
+      --sun: #F4E7A1; --ink: #F3F6FF; --card: #26356A; --bar-bg: #1A2548;
+    }
+  }
+  :root[data-theme="dark"] {
+    --sky: #1C2A55; --grass: #2F6B3A; --grass-dark: #1F4C28;
+    --sun: #F4E7A1; --ink: #F3F6FF; --card: #26356A; --bar-bg: #1A2548;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: linear-gradient(var(--sky) 0 420px, var(--grass) 420px 100%);
+    color: var(--ink);
+    font-family: "Baloo 2", "Comic Sans MS", "Trebuchet MS", sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 16px; min-height: 100%;
+  }
+  .sun {
+    position: fixed; top: calc(24px + env(safe-area-inset-top, 0px)); right: 24px;
+    width: 70px; height: 70px; border-radius: 50%; background: var(--sun);
+    box-shadow: 0 0 0 12px color-mix(in srgb, var(--sun) 35%, transparent);
+  }
+  .name-row { display: flex; align-items: center; gap: 10px; }
+  h1 { font-size: clamp(2.6rem, 10vw, 4rem); margin: 0; line-height: 1; font-weight: 800; }
+  .rename { width: auto; padding: 4px 10px; font-size: 1.3rem; box-shadow: 0 3px 0 #22335B; border-radius: 14px; }
+  .name-input {
+    font: inherit; font-weight: 800; font-size: 2.4rem; text-align: center; width: min(320px, 90vw);
+    border: 3px solid var(--ink); border-radius: 18px; padding: 4px 12px; background: var(--card); color: var(--ink);
+  }
+  .mood { font-size: 1.3rem; margin: 4px 0 8px; font-weight: 500; min-height: 1.6em; text-align: center; }
+
+  .stage { display: flex; align-items: flex-end; justify-content: center; gap: 8px; }
+  svg.dog { width: min(280px, 70vw); height: auto; overflow: visible; }
+  svg.friend { --cat: #8B8FA8; width: min(150px, 34vw); height: auto; overflow: visible; }
+  svg.friend.visiting { animation: arrive .6s ease-out; }
+  @keyframes arrive { from { transform: translateX(120px); opacity: 0; } }
+  .stage.party svg { animation: hop .3s ease-in-out 6 alternate; }
+  .tail { transform-origin: 196px 150px; }
+  .happy .tail { animation: wag .35s ease-in-out infinite alternate; }
+  @keyframes wag { from { transform: rotate(-18deg); } to { transform: rotate(18deg); } }
+  .eat { animation: chomp .15s ease-in-out 4 alternate; }
+  @keyframes chomp { to { transform: translateY(6px); } }
+  .jump { animation: hop .25s ease-out 3 alternate; }
+  @keyframes hop { to { transform: translateY(-18px); } }
+  .snooze #zzz { display: block !important; animation: float 1.2s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-8px); } }
+  .sick { --fur: #9CC97A; --fur-dark: #6E9A52; }
+  .sick #thermo { display: block !important; }
+  .at-vet #plaster { display: block !important; }
+  .loved #hearts { display: block !important; animation: rise 1.4s ease-out forwards; }
+  @keyframes rise { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-30px); } }
+  .away { visibility: hidden; }
+  .friend.grumpy { --cat: #9C9DB0; }
+  .friend .cat-face-sad { display: none; }
+  .friend.grumpy .cat-face-happy { display: none; }
+  .friend.grumpy .cat-face-sad { display: block; }
+
+  body.night { --sky: #14213D; --grass: #2E5A38; --grass-dark: #1C3A22; --ink: #F3F6FF; --card: #26356A; --bar-bg: #1A2548; }
+  body.night.rainy { --sky: #1B2333; }
+  body.night.snowy { --sky: #22304F; --grass: #C9D6E5; --grass-dark: #8FA6C0; }
+  body.night .sun { display: none; }
+  .moon { display: none; position: fixed; top: calc(24px + env(safe-area-inset-top, 0px)); right: 34px; width: 60px; height: 60px; border-radius: 50%; background: #F4E7A1; box-shadow: -14px 6px 0 6px var(--sky) inset; }
+  body.night .moon { display: block; }
+  .stars { display: none; position: fixed; inset: 0; pointer-events: none; }
+  body.night .stars { display: block; }
+  .stars span { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff; animation: twinkle 2s ease-in-out infinite alternate; }
+  @keyframes twinkle { from { opacity: .3; } to { opacity: 1; } }
+  .night-bar .fill { background: linear-gradient(90deg, #7B8CDE, #2B3A8F) !important; }
+  body.spring { --grass: #8FD48A; --grass-dark: #5BA85A; }
+  body.summer { --sky: #9EDCFF; --grass: #9BD77A; }
+  body.summer .sun { transform: scale(1.35); }
+  body.autumn { --sky: #E9D3A8; --grass: #C9A25A; --grass-dark: #8F6E33; }
+  body.winter { --sky: #DCEBF7; --grass: #F4F8FC; --grass-dark: #B9CCE0; }
+  body.night.autumn { --sky: #2B2340; --grass: #6B5230; }
+  .flowers { display: none; position: fixed; left: 0; right: 0; top: 400px; height: 40px; pointer-events: none; }
+  body.spring .flowers { display: block; }
+  .flowers span { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: #FF8FB1; box-shadow: 0 0 0 4px #FFD6E3; }
+  .flowers span::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: #FFD23F; }
+  body.autumn.sunny .drops { display: block; }
+  body.autumn.sunny .drops span { width: 14px; height: 10px; border-radius: 50% 0; background: #E07A2F; animation-name: leaf; }
+  @keyframes leaf { 0% { transform: translateY(0) rotate(0); } 100% { transform: translateY(120vh) rotate(720deg); } }
+  .season-row { display: flex; gap: 6px; width: min(420px, 100%); margin-top: 8px; }
+  .season-row button { font-size: .95rem; padding: 6px 2px; background: var(--card); color: var(--ink); border-color: var(--ink); box-shadow: 0 4px 0 var(--ink); }
+  .season-row button.on { background: var(--sun); color: #22335B; }
+  body.rainy { --sky: #8FA3B8; --grass: #5C9B55; }
+  body.snowy { --sky: #DCEBF7; --grass: #F4F8FC; --grass-dark: #B9CCE0; }
+  body.rainy .sun, body.snowy .sun { display: none; }
+  .weather-row { display: flex; gap: 8px; width: min(420px, 100%); margin-top: 10px; }
+  .weather-row button { font-size: 1rem; padding: 6px 4px; background: var(--card); color: var(--ink); border-color: var(--ink); box-shadow: 0 4px 0 var(--ink); }
+  .weather-row button.on { background: var(--sun); color: #22335B; }
+  .drops { position: fixed; inset: 0; pointer-events: none; z-index: 4; overflow: hidden; display: none; }
+  body.rainy .drops, body.snowy .drops { display: block; }
+  .drops span { position: absolute; top: -10%; animation: fall linear infinite; }
+  body.rainy .drops span { width: 3px; height: 22px; border-radius: 2px; background: #5D8CC9; opacity: .7; }
+  body.snowy .drops span { width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 4px #cfe3f5; }
+  @keyframes fall { to { transform: translateY(120vh); } }
+  #scarf, #beanie { display: none; }
+  body.snowy #scarf, body.snowy #beanie { display: block; }
+  #umbrella { display: none; }
+  body.rainy #umbrella { display: block; }
+  .car { position: fixed; left: -240px; bottom: 30%; width: 200px; height: 100px; pointer-events: none; z-index: 5; }
+  .car.go   { animation: drive 2.5s ease-in forwards; }
+  .car.back { animation: drive 2.5s ease-out reverse forwards; }
+  @keyframes drive { to { left: 100vw; } }
+  .car.go .wheel, .car.back .wheel { animation: spin .5s linear infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .panel {
+    background: var(--card); border-radius: 28px; padding: 18px 20px 20px;
+    width: min(420px, 100%); margin-top: 8px; box-shadow: 0 6px 0 var(--grass-dark);
+  }
+  .panel.guest { border: 4px dashed #8B8FA8; margin-top: 16px; }
+  .panel h2 { margin: 0 0 10px; font-size: 1.5rem; }
+  .bar-label { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; }
+  .bar { height: 34px; border-radius: 17px; background: var(--bar-bg); overflow: hidden; border: 3px solid var(--ink); margin: 6px 0 16px; }
+  .fill { height: 100%; width: 100%; background: var(--full); transition: width .4s linear, background .4s; }
+  .heart .fill { background: linear-gradient(90deg, #FF7AB6, #FF4F9A) !important; }
+  .hint { margin: -8px 0 14px; font-size: .95rem; font-weight: 500; opacity: .8; }
+  .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .wide { grid-column: span 2; }
+  button {
+    font: inherit; font-weight: 800; font-size: 1.15rem; color: #22335B;
+    background: var(--sun); border: 3px solid #22335B; border-radius: 20px;
+    padding: 10px 6px; width: 100%; cursor: pointer; box-shadow: 0 5px 0 #22335B; transition: transform .08s;
+  }
+  button:active { transform: translateY(4px); box-shadow: 0 1px 0 #22335B; }
+  button:focus-visible { outline: 4px solid var(--ink); outline-offset: 3px; }
+  button.vet { background: #FF5E5E; color: #fff; }
+  button:disabled { opacity: .5; cursor: default; }
+  .guest button { background: #C9CCE0; }
+  @media (prefers-reduced-motion: reduce) {
+    .happy .tail, .eat, .jump, .snooze #zzz, .car .wheel, .loved #hearts, svg.friend.visiting, .stage.party svg, .drops span, .stars span { animation: none; }
+  }
+</style>
+</head>
+<body class="sunny spring">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="flowers" id="flowers" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="drops" id="drops" aria-hidden="true"></div>
+  <div class="name-row">
+    <h1 id="name">Saydee</h1>
+    <button class="rename" id="renameBtn" type="button" aria-label="Change your pet's name">✏️</button>
+  </div>
+  <input class="name-input" id="nameInput" type="text" maxlength="14" placeholder="Type a name" aria-label="Pet's name" hidden>
+  <p class="mood" id="mood" aria-live="polite">Woof! I'm happy!</p>
+
+  <div class="stage" id="stage">
+  <svg class="dog happy" id="dog" viewBox="0 0 240 220" role="img" aria-label="Saydee the dog">
+    <path class="tail" d="M196 150 Q228 120 222 92" stroke="var(--fur)" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <ellipse cx="140" cy="165" rx="66" ry="40" fill="var(--fur)"/>
+    <ellipse cx="140" cy="178" rx="40" ry="20" fill="#F4C98A"/>
+    <rect x="92" y="180" width="20" height="34" rx="10" fill="var(--fur)"/>
+    <rect x="166" y="180" width="20" height="34" rx="10" fill="var(--fur)"/>
+    <g id="head">
+      <ellipse cx="46" cy="70" rx="20" ry="40" fill="var(--fur-dark)" transform="rotate(20 46 70)"/>
+      <ellipse cx="144" cy="70" rx="20" ry="40" fill="var(--fur-dark)" transform="rotate(-20 144 70)"/>
+      <circle cx="95" cy="85" r="55" fill="var(--fur)"/>
+      <ellipse cx="95" cy="112" rx="32" ry="24" fill="#F4C98A"/>
+      <circle cx="74" cy="78" r="8" fill="#22335B"/>
+      <circle cx="116" cy="78" r="8" fill="#22335B"/>
+      <circle cx="77" cy="75" r="2.5" fill="#fff"/>
+      <circle cx="119" cy="75" r="2.5" fill="#fff"/>
+      <g id="eyelids" style="display:none">
+        <circle cx="74" cy="78" r="9" fill="var(--fur)"/>
+        <circle cx="116" cy="78" r="9" fill="var(--fur)"/>
+        <path d="M66 78 Q74 84 82 78" stroke="#22335B" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M108 78 Q116 84 124 78" stroke="#22335B" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </g>
+      <g id="plaster" style="display:none" transform="rotate(-30 70 45)">
+        <rect x="52" y="39" width="36" height="12" rx="6" fill="#F6C7A0" stroke="#22335B" stroke-width="2"/>
+        <rect x="63" y="42" width="14" height="6" rx="2" fill="#E8A97E"/>
+      </g>
+      <g id="hearts" style="display:none" fill="#FF4F9A" font-size="22" font-weight="800">
+        <text x="30" y="30">♥</text><text x="95" y="8">♥</text><text x="150" y="26">♥</text>
+      </g>
+      <g id="thermo" style="display:none">
+        <rect x="112" y="108" width="34" height="8" rx="4" fill="#fff" stroke="#22335B" stroke-width="2" transform="rotate(-20 112 108)"/>
+        <rect x="112" y="110" width="20" height="4" rx="2" fill="#FF5E5E" transform="rotate(-20 112 108)"/>
+      </g>
+      <text id="zzz" x="130" y="40" font-size="26" font-weight="800" fill="#22335B" style="display:none">z z z</text>
+      <ellipse cx="95" cy="100" rx="10" ry="7" fill="#22335B"/>
+      <path id="mouth" d="M80 114 Q95 128 110 114" stroke="#22335B" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path id="tongue" d="M90 119 Q95 134 100 119 Z" fill="#FF7A9A"/>
+    </g>
+    <rect x="62" y="132" width="66" height="12" rx="6" fill="#FF5E8A"/>
+    <circle cx="95" cy="150" r="7" fill="var(--sun)" stroke="#22335B" stroke-width="2"/>
+    <g id="scarf">
+      <rect x="56" y="128" width="78" height="18" rx="9" fill="#E63946"/>
+      <rect x="112" y="140" width="16" height="34" rx="6" fill="#E63946"/>
+      <path d="M60 137 H130 M64 143 H126" stroke="#F8C4C8" stroke-width="2"/>
+    </g>
+    <g id="beanie">
+      <path d="M44 62 Q95 0 146 62 Z" fill="#457B9D"/>
+      <rect x="40" y="56" width="110" height="16" rx="8" fill="#1D3557"/>
+      <circle cx="95" cy="14" r="10" fill="#fff"/>
+    </g>
+    <g id="umbrella">
+      <path d="M0 40 Q95 -40 190 40 Z" fill="#FFB703"/>
+      <path d="M0 40 Q95 -40 190 40" stroke="#22335B" stroke-width="3" fill="none"/>
+      <path d="M95 40 V120 Q95 135 82 130" stroke="#22335B" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>
+
+  <svg class="friend" id="friend" viewBox="0 0 160 200" aria-label="Emma the cat" hidden>
+    <path d="M120 150 Q160 130 150 90" stroke="var(--cat)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <ellipse cx="80" cy="150" rx="48" ry="40" fill="var(--cat)"/>
+    <path d="M52 135 q28 8 56 0 M48 155 q32 10 64 0" stroke="#6B6F88" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="48" y="170" width="18" height="28" rx="9" fill="var(--cat)"/>
+    <rect x="94" y="170" width="18" height="28" rx="9" fill="var(--cat)"/>
+    <path d="M40 80 L48 36 L82 66 Z" fill="var(--cat)"/>
+    <path d="M120 80 L112 36 L78 66 Z" fill="var(--cat)"/>
+    <path d="M50 76 L54 50 L74 68 Z" fill="#FFB3C6"/>
+    <path d="M110 76 L106 50 L86 68 Z" fill="#FFB3C6"/>
+    <circle cx="80" cy="95" r="42" fill="var(--cat)"/>
+    <ellipse cx="64" cy="92" rx="7" ry="9" fill="#5CC96B"/>
+    <ellipse cx="96" cy="92" rx="7" ry="9" fill="#5CC96B"/>
+    <ellipse cx="64" cy="92" rx="2.5" ry="8" fill="#22335B"/>
+    <ellipse cx="96" cy="92" rx="2.5" ry="8" fill="#22335B"/>
+    <path d="M74 108 L86 108 L80 116 Z" fill="#FFB3C6"/>
+    <path class="cat-face-happy" d="M80 116 Q74 126 66 120 M80 116 Q86 126 94 120" stroke="#22335B" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path class="cat-face-sad" d="M68 128 Q80 118 92 128" stroke="#22335B" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M30 104 L58 108 M30 116 L58 114 M130 104 L102 108 M130 116 L102 114" stroke="#22335B" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+  </div>
+
+  <svg class="car" id="car" viewBox="0 0 200 100" aria-hidden="true">
+    <rect x="10" y="45" width="180" height="35" rx="12" fill="#FF5E5E"/>
+    <path d="M45 45 L65 18 H140 L165 45 Z" fill="#FF5E5E"/>
+    <path d="M70 22 H100 V45 H52 Z" fill="#BFE6FF"/>
+    <path d="M108 22 H136 L156 45 H108 Z" fill="#BFE6FF"/>
+    <g transform="translate(76 34) scale(.22)">
+      <ellipse cx="-30" cy="-10" rx="18" ry="34" fill="#9A5B22" transform="rotate(20 -30 -10)"/>
+      <ellipse cx="30" cy="-10" rx="18" ry="34" fill="#9A5B22" transform="rotate(-20 30 -10)"/>
+      <circle cx="0" cy="0" r="45" fill="#D9913F"/>
+      <circle cx="-16" cy="-6" r="7" fill="#22335B"/><circle cx="16" cy="-6" r="7" fill="#22335B"/>
+      <ellipse cx="0" cy="14" rx="9" ry="6" fill="#22335B"/>
+      <path d="M-8 32 Q0 44 8 32 Z" fill="#FF7A9A"/>
+    </g>
+    <rect x="182" y="55" width="8" height="10" rx="2" fill="#FFD23F"/>
+    <g class="wheel"><circle cx="50" cy="80" r="16" fill="#22335B"/><circle cx="50" cy="80" r="7" fill="#ccc"/><rect x="48" y="66" width="4" height="28" fill="#22335B"/></g>
+    <g class="wheel"><circle cx="150" cy="80" r="16" fill="#22335B"/><circle cx="150" cy="80" r="7" fill="#ccc"/><rect x="148" y="66" width="4" height="28" fill="#22335B"/></g>
+  </svg>
+
+  <div class="weather-row" id="weatherRow" aria-label="Weather">
+    <button type="button" data-weather="sunny" class="on">☀️ Sunny</button>
+    <button type="button" data-weather="rainy">🌧️ Rainy</button>
+    <button type="button" data-weather="snowy">❄️ Snowy</button>
+  </div>
+
+  <div class="season-row" id="seasonRow" aria-label="Season">
+    <button type="button" data-season="spring" class="on">🌸 Spring</button>
+    <button type="button" data-season="summer">🌞 Summer</button>
+    <button type="button" data-season="autumn">🍂 Autumn</button>
+    <button type="button" data-season="winter">⛄ Winter</button>
+  </div>
+
+  <!-- Saydee's panel -->
+  <div class="panel">
+    <div class="bar-label"><span>💖 Happiness</span><span id="happyPercent">100%</span></div>
+    <div class="bar heart" role="progressbar" aria-label="Happiness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="happyBar"><div class="fill" id="happyFill"></div></div>
+    <p class="hint">Keep the three bars below full and your pet's happiness goes up!</p>
+    <div class="bar-label"><span>🌙 Nighttime</span><span id="nightPercent">0%</span></div>
+    <div class="bar night-bar" role="progressbar" aria-label="Nighttime" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="nightBar"><div class="fill" id="nightFill" style="width:0%"></div></div>
+    <p class="hint" id="nightHint">When this fills up, night falls. Time for bed!</p>
+    <div class="bar-label"><span>Hunger</span><span id="foodPercent">100%</span></div>
+    <div class="bar" role="progressbar" aria-label="Hunger" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="foodBar"><div class="fill" id="foodFill"></div></div>
+    <div class="bar-label"><span>Play</span><span id="funPercent">100%</span></div>
+    <div class="bar" role="progressbar" aria-label="Play" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="funBar"><div class="fill" id="funFill"></div></div>
+    <div class="bar-label"><span>Sleep</span><span id="energyPercent">100%</span></div>
+    <div class="bar" role="progressbar" aria-label="Sleep" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="energyBar"><div class="fill" id="energyFill"></div></div>
+    <div class="bar-label"><span>🤒 Sickness</span><span id="sickPercent">0%</span></div>
+    <div class="bar" role="progressbar" aria-label="Sickness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="sickBar"><div class="fill" id="sickFill" style="width:0%"></div></div>
+    <p class="hint">If any bar gets very low, your pet starts to get sick. Over 50% she needs the vet!</p>
+    <div class="buttons">
+      <button id="feed" type="button">🦴 Feed</button>
+      <button id="play" type="button">🎾 Play</button>
+      <button id="sleep" type="button">💤 Sleep</button>
+      <button id="treat" type="button">🍪 Treat</button>
+      <button id="pet" type="button">🖐️ Pet</button>
+      <button id="care" type="button">💊 Medicine</button>
+      <button id="playdate" type="button" class="wide">🐱 Playdate with Emma</button>
+    </div>
+  </div>
+
+  <!-- Emma's panel: only shows while she is visiting -->
+  <div class="panel guest" id="guestPanel" hidden>
+    <h2 id="guestTitle">🐱 Emma is visiting</h2>
+    <p class="mood" id="guestMood" style="margin-top:0">Hi! Look after me too!</p>
+    <div class="bar-label"><span>Hunger</span><span id="gFoodPercent">100%</span></div>
+    <div class="bar" role="progressbar" aria-label="Emma's hunger" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="gFoodBar"><div class="fill" id="gFoodFill"></div></div>
+    <div class="bar-label"><span>Play</span><span id="gFunPercent">100%</span></div>
+    <div class="bar" role="progressbar" aria-label="Emma's play" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="gFunBar"><div class="fill" id="gFunFill"></div></div>
+    <div class="bar-label"><span>Sleep</span><span id="gEnergyPercent">100%</span></div>
+    <div class="bar" role="progressbar" aria-label="Emma's sleep" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="gEnergyBar"><div class="fill" id="gEnergyFill"></div></div>
+    <p class="hint" id="guestHint">Emma stays for a while. If you look after her well, she goes home happy!</p>
+    <div class="buttons">
+      <button id="gFeed" type="button">🐟 Feed Emma</button>
+      <button id="gPlay" type="button">🧶 Play with Emma</button>
+      <button id="gSleep" type="button">💤 Nap time</button>
+      <button id="gPet" type="button">🖐️ Pet Emma</button>
+    </div>
+  </div>
+
+<script>
+  // The Clock slowly turns day into night and back again.
+  class Clock {
+    constructor() {
+      this.night = 0;        // 0 = bright day, 100 = deepest night
+      this.isNight = false;
+    }
+    tick() {
+      if (this.isNight) {
+        this.night = Math.max(0, this.night - 2);      // the night passes
+        if (this.night === 0) this.isNight = false;    // sunrise!
+      } else {
+        this.night = Math.min(100, this.night + 1);    // evening comes
+        if (this.night === 100) this.isNight = true;   // night falls!
+      }
+    }
+  }
+
+  // A Season changes the world and how much fun playing is.
+  class Season {
+    constructor(name, extraDrain, playBonus, weather, saying) {
+      this.name = name;
+      this.extraDrain = extraDrain;   // a bar that goes down faster this season
+      this.playBonus = playBonus;     // extra fun from playing this season
+      this.weather = weather;         // the weather this season starts with
+      this.saying = saying;
+    }
+    static all() {
+      return {
+        spring: new Season("spring", null,     5,  "sunny", "Spring! Flowers everywhere. Achoo!"),
+        summer: new Season("summer", "energy", 0,  "sunny", "Summer! It's hot… I get tired quickly."),
+        autumn: new Season("autumn", null,     15, "sunny", "Autumn! Jumping in the leaves is the best!"),
+        winter: new Season("winter", "food",   0,  "snowy", "Winter! Brrr… I need extra food to stay warm.")
+      };
+    }
+    static order() { return ["spring", "summer", "autumn", "winter"]; }
+  }
+
+  // The Weather changes how the pets feel.
+  class Weather {
+    constructor(name, extraDrain, saying) {
+      this.name = name;
+      this.extraDrain = extraDrain;   // which bar goes down faster in this weather
+      this.saying = saying;
+    }
+    static all() {
+      return {
+        sunny: new Weather("sunny", null,     "Sunshine! Perfect for playing outside!"),
+        rainy: new Weather("rainy", "fun",    "Rain… I can't play outside. Boring!"),
+        snowy: new Weather("snowy", "energy", "Brrr, snow! I get tired quickly in the cold.")
+      };
+    }
+  }
+
+  // Every pet has food, play, sleep and love.
+  class Pet {
+    constructor(name, kind) {
+      this.name = name;
+      this.kind = kind;
+      this.food = 100;
+      this.fun = 100;
+      this.energy = 100;
+      this.love = 0;        // extra happiness from treats and pets
+      this.speed = 1;       // how fast the bars go down each second
+    }
+    liveOneSecond(weather, season) {
+      this.food = Math.max(0, this.food - this.speed);
+      this.fun = Math.max(0, this.fun - this.speed);
+      this.energy = Math.max(0, this.energy - this.speed);
+      this.love = Math.max(0, this.love - 1);   // love slowly fades if you stop
+      if (weather && weather.extraDrain) {
+        this[weather.extraDrain] = Math.max(0, this[weather.extraDrain] - 1);
+      }
+      if (season && season.extraDrain) {
+        this[season.extraDrain] = Math.max(0, this[season.extraDrain] - 1);
+      }
+    }
+    stayUpLate() {
+      this.energy = Math.max(0, this.energy - 1);   // being awake at night is tiring
+    }
+    sleepAtNight() {
+      this.energy = Math.min(100, this.energy + 50);   // a proper night's sleep
+    }
+    eat()      { this.food = Math.min(100, this.food + 25); }
+    play(bonus = 0) { this.fun = Math.min(100, this.fun + 25 + bonus); }
+    sleep()    { this.energy = Math.min(100, this.energy + 25); }
+    giveTreat(){ this.food = Math.min(100, this.food + 5); this.love = Math.min(30, this.love + 10); }
+    givePets() { this.love = Math.min(30, this.love + 10); }
+    playTogether(other) {
+      this.fun = Math.min(100, this.fun + 40);     // playing with a friend is the most fun
+      this.love = Math.min(30, this.love + 10);
+      this.energy = Math.max(0, this.energy - 5);  // and a little bit tiring
+      other.fun = Math.min(100, other.fun + 40);
+      other.love = Math.min(30, other.love + 10);
+      other.energy = Math.max(0, other.energy - 5);
+    }
+    lowestNeed() {
+      const needs = [
+        { name: "food",   value: this.food },
+        { name: "play",   value: this.fun },
+        { name: "sleep",  value: this.energy }
+      ];
+      return needs.sort((a, b) => a.value - b.value)[0];
+    }
+    happiness() {
+      const average = (this.food + this.fun + this.energy) / 3;
+      return Math.min(100, Math.max(0, Math.round(average + this.love)));
+    }
+    isNeglected() { return this.lowestNeed().value <= 25; }
+    isMiserable() { return this.lowestNeed().value === 0; }
+  }
+
+  // Saydee is a Dog: she can also get sick, go to the vet and be renamed.
+  class Dog extends Pet {
+    constructor(name) {
+      super(name, "dog");
+      this.sickness = 0;
+    }
+    liveOneSecond(weather, season) {
+      super.liveOneSecond(weather, season);
+      if (this.isNeglected()) {
+        this.sickness = Math.min(100, this.sickness + 2);   // gets worse when a bar is very low
+      } else if (this.lowestNeed().value > 60) {
+        this.sickness = Math.max(0, this.sickness - 1);     // slowly gets better when looked after
+      }
+    }
+    takeMedicine() { this.sickness = Math.max(0, this.sickness - 30); }
+    goToVet()      { this.sickness = 0; }
+    isSick()       { return this.sickness > 50; }
+    rename(newName) {
+      const clean = newName.trim().slice(0, 14);
+      if (clean) this.name = clean;
+    }
+    happiness() {
+      return Math.max(0, super.happiness() - this.sickness);
+    }
+    mood() {
+      if (this.isSick()) return "sick";
+      const worst = this.lowestNeed();
+      if (worst.value > 60) return "happy";
+      const words = {
+        food:  ["hungry", "starving"],
+        play:  ["bored", "lonely"],
+        sleep: ["tired", "exhausted"]
+      };
+      return worst.value > 25 ? words[worst.name][0] : words[worst.name][1];
+    }
+  }
+
+  // Emma is a Cat who comes to visit. Cats get hungry and bored fast!
+  class Cat extends Pet {
+    constructor(name) {
+      super(name, "cat");
+      this.speed = 2;
+    }
+    arrive() {
+      this.food = 70; this.fun = 60; this.energy = 80; this.love = 0;
+    }
+    mood() {
+      const worst = this.lowestNeed();
+      if (worst.value > 60) return "Purrr… this is a nice playdate!";
+      if (worst.value > 25) {
+        return { food: "Meow… any snacks?", play: "Where's the wool ball?", sleep: "*yawn* I need a nap…" }[worst.name];
+      }
+      return { food: "I'm SO hungry! 😿", play: "This is boring… 😿", sleep: "Too tired… 😿" }[worst.name];
+    }
+  }
+
+  // A Bars object draws one pet's bars on the page.
+  class Bars {
+    constructor(ids) { this.ids = ids; }
+    show(pet) {
+      this.set("food", pet.food);
+      this.set("fun", pet.fun);
+      this.set("energy", pet.energy);
+    }
+    set(key, value) {
+      const id = this.ids[key];
+      document.getElementById(id + "Fill").style.width = value + "%";
+      document.getElementById(id + "Fill").style.background = Bars.colour(value);
+      document.getElementById(id + "Percent").textContent = value + "%";
+      document.getElementById(id + "Bar").setAttribute("aria-valuenow", value);
+    }
+    static colour(value) {
+      if (value > 60) return "var(--full)";
+      if (value > 25) return "var(--mid)";
+      return "var(--low)";
+    }
+  }
+
+  // The DogScreen runs the whole game.
+  class DogScreen {
+    constructor(dog, friend) {
+      this.dog = dog;
+      this.friend = friend;
+      this.visiting = false;
+      this.visitSeconds = 0;
+      this.weathers = Weather.all();
+      this.weather = this.weathers.sunny;
+      this.clock = new Clock();
+      this.seasons = Season.all();
+      this.season = this.seasons.spring;
+
+      this.svg = document.getElementById("dog");
+      this.head = document.getElementById("head");
+      this.mouth = document.getElementById("mouth");
+      this.tongue = document.getElementById("tongue");
+      this.eyelids = document.getElementById("eyelids");
+      this.moodText = document.getElementById("mood");
+      this.nameText = document.getElementById("name");
+      this.nameInput = document.getElementById("nameInput");
+      this.car = document.getElementById("car");
+      this.stage = document.getElementById("stage");
+      this.friendSvg = document.getElementById("friend");
+      this.guestPanel = document.getElementById("guestPanel");
+      this.guestMood = document.getElementById("guestMood");
+      this.playdateButton = document.getElementById("playdate");
+      this.careButton = document.getElementById("care");
+      this.buttons = Array.from(document.querySelectorAll("button"));
+      this.dogBars = new Bars({ food: "food", fun: "fun", energy: "energy" });
+      this.guestBars = new Bars({ food: "gFood", fun: "gFun", energy: "gEnergy" });
+      this.lastMood = null;
+      this.sleepTimer = null;
+
+      this.on("feed",  () => this.feed());
+      this.on("play",  () => this.play());
+      this.on("sleep", () => this.sleep());
+      this.on("treat", () => this.treat());
+      this.on("pet",   () => this.pet());
+      this.on("care",  () => this.care());
+      this.on("playdate", () => this.playdate());
+      this.on("gFeed",  () => this.careForGuest(() => this.friend.eat(),   "Nom nom, yummy fish!"));
+      this.on("gPlay",  () => this.careForGuest(() => this.friend.play(),  "Pounce! Got the wool!"));
+      this.on("gSleep", () => this.careForGuest(() => this.clock.isNight ? this.friend.sleepAtNight() : this.friend.sleep(), "Zzz… cosy cat nap."));
+      this.on("gPet",   () => this.careForGuest(() => this.friend.givePets(), "Purrrrr… 💕"));
+      this.on("renameBtn", () => this.startRename());
+      document.querySelectorAll("#weatherRow button").forEach(b =>
+        b.addEventListener("click", () => this.setWeather(b.dataset.weather)));
+      document.querySelectorAll("#seasonRow button").forEach(b =>
+        b.addEventListener("click", () => this.setSeason(b.dataset.season, true)));
+      this.makeDrops();
+      this.makeStars();
+      this.makeFlowers();
+      this.nameInput.addEventListener("keydown", e => { if (e.key === "Enter") this.finishRename(); });
+      this.nameInput.addEventListener("blur", () => this.finishRename());
+
+      try { const saved = localStorage.getItem("petName_v2"); if (saved) this.dog.rename(saved); } catch (e) {}
+      setInterval(() => this.tick(), 1000);
+      this.draw();
+    }
+    on(id, handler) { document.getElementById(id).addEventListener("click", handler); }
+
+    tick() {
+      const wasNight = this.clock.isNight;
+      this.clock.tick();
+      this.dog.liveOneSecond(this.weather, this.season);
+      if (this.clock.isNight) {
+        this.dog.stayUpLate();
+        if (this.visiting) this.friend.stayUpLate();
+      }
+      if (this.visiting) this.tickVisit();
+      if (this.clock.isNight && !wasNight) this.say("It's dark… the stars are out. Time for bed? 🌙");
+      if (!this.clock.isNight && wasNight) {
+        this.say("Good morning! The sun is up! 🌅");
+        this.nextSeason();   // every new day is a new season
+      }
+      this.draw();
+    }
+    // --- Seasons ---
+    setSeason(name, chosenByPlayer) {
+      this.season = this.seasons[name];
+      document.body.classList.remove("spring", "summer", "autumn", "winter");
+      document.body.classList.add(name);
+      document.querySelectorAll("#seasonRow button").forEach(b => b.classList.toggle("on", b.dataset.season === name));
+      this.setWeather(this.season.weather);
+      this.say(this.season.saying);
+    }
+    nextSeason() {
+      const order = Season.order();
+      const next = order[(order.indexOf(this.season.name) + 1) % order.length];
+      setTimeout(() => this.setSeason(next), 2500);
+    }
+    makeFlowers() {
+      const flowers = document.getElementById("flowers");
+      for (let i = 0; i < 14; i++) {
+        const f = document.createElement("span");
+        f.style.left = (2 + Math.random() * 96) + "%";
+        f.style.top = Math.random() * 26 + "px";
+        flowers.appendChild(f);
+      }
+    }
+    makeStars() {
+      const stars = document.getElementById("stars");
+      for (let i = 0; i < 30; i++) {
+        const st = document.createElement("span");
+        st.style.left = Math.random() * 100 + "%";
+        st.style.top = Math.random() * 45 + "%";
+        st.style.animationDelay = (-Math.random() * 2) + "s";
+        stars.appendChild(st);
+      }
+    }
+
+    // --- Weather ---
+    setWeather(name) {
+      this.weather = this.weathers[name];
+      document.body.classList.remove("sunny", "rainy", "snowy");
+      document.body.classList.add(name);
+      document.querySelectorAll("#weatherRow button").forEach(b => b.classList.toggle("on", b.dataset.weather === name));
+      this.say(this.weather.saying);
+    }
+    makeDrops() {
+      const drops = document.getElementById("drops");
+      for (let i = 0; i < 40; i++) {
+        const d = document.createElement("span");
+        d.style.left = Math.random() * 100 + "%";
+        d.style.animationDuration = (1.2 + Math.random() * 2) + "s";
+        d.style.animationDelay = (-Math.random() * 3) + "s";
+        drops.appendChild(d);
+      }
+    }
+
+    // --- Saydee's buttons ---
+    feed()  { this.dog.eat();   this.chomp(); this.say("Yum yum! Thank you!"); }
+    play()  {
+      this.dog.play(this.season.playBonus);
+      this.restart(this.svg, "jump");
+      this.say(this.season.name === "autumn" ? "Wheee! Jumping in the leaves! 🍂" : "Wheee! Fetch! 🎾");
+    }
+    treat() { this.dog.giveTreat(); this.chomp(); this.showHearts(); this.say("A treat! You're the best! 🍪"); }
+    pet()   { this.dog.givePets(); this.showHearts(); this.say("Mmm, scratches behind the ears… 💕"); }
+    sleep() {
+      if (this.clock.isNight) this.dog.sleepAtNight();
+      else this.dog.sleep();
+      this.svg.classList.add("snooze");
+      this.eyelids.style.display = "";
+      this.say(this.clock.isNight ? "Zzz… good night! Sleeping under the stars 🌙" : "Zzz… nap time 💤");
+      clearTimeout(this.sleepTimer);
+      this.sleepTimer = setTimeout(() => { this.svg.classList.remove("snooze"); this.eyelids.style.display = "none"; }, 2500);
+    }
+    care() {
+      if (this.dog.isSick()) this.vet();
+      else { this.dog.takeMedicine(); this.say("Bleh, yucky medicine… but I feel better!"); }
+    }
+    vet() {
+      this.say("Off to the vet in the car… 🚗");
+      this.buttons.forEach(b => b.disabled = true);
+      this.svg.classList.add("away");
+      this.car.classList.remove("back");
+      this.car.classList.add("go");
+      setTimeout(() => {
+        this.dog.goToVet();
+        this.say("The vet is making " + this.dog.name + " better… 🏥");
+        this.car.classList.remove("go");
+        this.car.classList.add("back");
+      }, 2500);
+      setTimeout(() => {
+        this.car.classList.remove("back");
+        this.svg.classList.remove("away");
+        this.svg.classList.add("at-vet");
+        this.say("All better! Thanks for taking me to the vet! 🩹");
+        this.buttons.forEach(b => b.disabled = false);
+        this.draw();
+        setTimeout(() => this.svg.classList.remove("at-vet"), 4000);
+      }, 5000);
+    }
+
+    // --- Playdates ---
+    playdate() {
+      if (!this.visiting) this.startVisit();
+      this.dog.playTogether(this.friend);
+      this.restart(this.stage, "party");
+      this.showHearts();
+      this.say("Playing with " + this.friend.name + "! Wheee!");
+      this.guestMood.textContent = "So much fun!";
+      this.draw();
+    }
+    startVisit() {
+      this.friend.arrive();
+      this.visiting = true;
+      this.visitSeconds = 0;
+      this.friendSvg.hidden = false;
+      this.friendSvg.classList.add("visiting");
+      this.guestPanel.hidden = false;
+      this.playdateButton.textContent = "🎾 Play together";
+    }
+    tickVisit() {
+      this.friend.liveOneSecond(this.weather, this.season);
+      this.visitSeconds++;
+      if (this.friend.isMiserable()) {
+        this.endVisit(this.friend.name + " went home sad… look after her better next time. 😿");
+      } else if (this.visitSeconds >= 90) {
+        if (this.friend.happiness() > 60) {
+          this.dog.love = Math.min(30, this.dog.love + 10);
+          this.endVisit(this.friend.name + " had the BEST time! See you soon! 😸");
+        } else {
+          this.endVisit(this.friend.name + " went home. She was a bit grumpy.");
+        }
+      }
+    }
+    endVisit(message) {
+      this.visiting = false;
+      this.friendSvg.hidden = true;
+      this.friendSvg.classList.remove("visiting", "grumpy");
+      this.guestPanel.hidden = true;
+      this.playdateButton.textContent = "🐱 Playdate with " + this.friend.name;
+      this.say(message);
+    }
+    careForGuest(action, words) {
+      if (!this.visiting) return;
+      action();
+      this.guestMood.textContent = words;
+      this.restart(this.friendSvg, "jump");
+      this.draw();
+    }
+
+    // --- Renaming ---
+    startRename() {
+      this.nameInput.value = this.dog.name;
+      this.nameInput.hidden = false;
+      this.nameText.parentElement.hidden = true;
+      this.nameInput.focus();
+      this.nameInput.select();
+    }
+    finishRename() {
+      if (this.nameInput.hidden) return;
+      this.dog.rename(this.nameInput.value);
+      this.nameInput.hidden = true;
+      this.nameText.parentElement.hidden = false;
+      try { localStorage.setItem("petName_v2", this.dog.name); } catch (e) {}
+      this.say("I'm " + this.dog.name + "! Woof!");
+    }
+
+    // --- Little helpers ---
+    say(words) { this.moodText.textContent = words; this.lastMood = "talking"; this.draw(); }
+    chomp() { this.restart(this.head, "eat"); }
+    showHearts() { this.restart(this.svg, "loved"); }
+    restart(element, className) {
+      element.classList.remove(className);
+      void element.getBoundingClientRect();   // restart the animation
+      element.classList.add(className);
+    }
+
+    // --- Drawing everything ---
+    draw() {
+      document.body.classList.toggle("night", this.clock.isNight);
+      document.getElementById("nightFill").style.width = this.clock.night + "%";
+      document.getElementById("nightPercent").textContent = this.clock.night + "%";
+      document.getElementById("nightBar").setAttribute("aria-valuenow", this.clock.night);
+      document.getElementById("nightHint").textContent = this.clock.isNight
+        ? "It's night! Sleeping now gives a big rest. Staying up makes your pet extra tired."
+        : "When this fills up, night falls. Time for bed!";
+      this.nameText.textContent = this.dog.name;
+      document.title = this.dog.name + " the dog";
+      this.dogBars.show(this.dog);
+
+      const sick = this.dog.sickness;
+      document.getElementById("sickFill").style.width = sick + "%";
+      document.getElementById("sickFill").style.background = Bars.colour(100 - sick);
+      document.getElementById("sickPercent").textContent = sick + "%";
+      document.getElementById("sickBar").setAttribute("aria-valuenow", sick);
+      this.svg.classList.toggle("sick", this.dog.isSick());
+      this.careButton.textContent = this.dog.isSick() ? "🏥 Vet" : "💊 Medicine";
+      this.careButton.classList.toggle("vet", this.dog.isSick());
+
+      const happy = this.dog.happiness();
+      document.getElementById("happyFill").style.width = happy + "%";
+      document.getElementById("happyPercent").textContent = happy + "%" + (happy === 100 ? " 🌟" : "");
+      document.getElementById("happyBar").setAttribute("aria-valuenow", happy);
+
+      const mood = this.dog.mood();
+      this.svg.classList.toggle("happy", mood === "happy");
+      this.tongue.style.display = mood === "happy" ? "" : "none";
+      this.mouth.setAttribute("d",
+        mood === "happy" ? "M80 114 Q95 128 110 114" :
+        ["hungry", "bored", "tired"].includes(mood) ? "M82 118 L108 118" :
+        "M80 124 Q95 110 110 124");
+      const words = {
+        happy: "Woof! I'm happy!",
+        hungry: "My tummy is rumbling…", bored: "I'm bored. Throw the ball?", tired: "*yawn* I'm getting sleepy…",
+        starving: "Please feed me! 🥺", lonely: "Nobody plays with me… 🥺", exhausted: "So tired… I need my bed 😴",
+        sick: "I don't feel well… 🤒 Medicine please?"
+      };
+      if (mood !== this.lastMood && (this.lastMood !== "talking" || this.dog.food % 5 === 0)) {
+        this.moodText.textContent = words[mood];
+        this.lastMood = mood;
+      }
+
+      if (this.visiting) {
+        this.guestBars.show(this.friend);
+        this.friendSvg.classList.toggle("grumpy", this.friend.isNeglected());
+        if (this.visitSeconds % 5 === 0) this.guestMood.textContent = this.friend.mood();
+        document.getElementById("guestHint").textContent =
+          this.friend.name + " goes home in " + (90 - this.visitSeconds) + " seconds. Keep her happy!";
+      }
+    }
+  }
+
+  new DogScreen(new Dog("Saydee"), new Cat("Emma"));
+</script>
+</body>
+</html>

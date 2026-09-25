@@ -1,0 +1,8 @@
+{
+  "disableClaudeAiConnectors": true,
+  "enableArtifact": false,
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "deny": ["Bash", "WebFetch", "WebSearch", "Artifact"]
+  }
+}

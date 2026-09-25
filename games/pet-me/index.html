@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pet Me</title>
+<style>
+  body {
+    margin: 0; min-height: 100vh; background: #BFE6FF; color: #22335B;
+    font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  h1 { font-size: 4rem; margin: 0 0 20px; }
+  h2 { font-size: 2rem; margin: 10px 0; }
+  button {
+    font: inherit; font-size: 1.6rem; font-weight: bold; color: #22335B;
+    background: #FFD23F; border: 4px solid #22335B; border-radius: 24px;
+    padding: 10px 24px; margin: 4px; cursor: pointer; box-shadow: 0 6px 0 #22335B;
+  }
+  .dogs { font-size: 8rem; }
+  .panel { display: inline-block; vertical-align: top; margin: 10px; }
+  .bar-label { font-size: 1.4rem; font-weight: bold; width: 300px; display: flex; justify-content: space-between; }
+  .bar { width: 300px; height: 34px; border: 4px solid #22335B; border-radius: 20px; background: white; overflow: hidden; margin-bottom: 12px; }
+  .fill { height: 100%; transition: width 0.4s; }
+  body { transition: background 1s; }
+  .sky { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+  .sky span { position: absolute; top: -40px; font-size: 1.5rem; animation: fall linear infinite; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+  .ground { position: fixed; left: 0; right: 0; bottom: 0; height: 22vh; z-index: -1; transition: background 1s; }
+  .ground span { position: absolute; font-size: 2rem; }
+  .stars { position: fixed; inset: 0; pointer-events: none; }
+  .stars span { position: absolute; font-size: 1.2rem; }
+  .pool { width: 280px; height: 140px; background: linear-gradient(135deg, #5DADE2, #2E86DE); border-radius: 20px; border: 6px solid #1F618D; margin: 20px auto; box-shadow: inset 0 4px 8px rgba(0,0,0,0.3); }
+  /* the 3D look: shadows under the dogs, a tilted pool, and deep bars */
+  .dogs span { display: inline-block; filter: drop-shadow(0 20px 6px rgba(0, 0, 0, 0.35)); }
+  .pool { transform: perspective(500px) rotateX(50deg); box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.4), 0 20px 0 #154360; margin-top: -10px; }
+  .bar { box-shadow: inset 0 6px 8px rgba(0, 0, 0, 0.25), 0 5px 0 #22335B; }
+  .fill { box-shadow: inset 0 -8px 0 rgba(0, 0, 0, 0.15), inset 0 6px 0 rgba(255, 255, 255, 0.4); }
+  h1, h2 { text-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); }
+  /* this makes a dog do a 3D spin */
+  .dogs span.spin { animation: spin3d var(--spin-time) ease-in-out; }
+  @keyframes spin3d { from { transform: perspective(400px) rotateY(0deg); } to { transform: perspective(400px) rotateY(360deg); } }
+</style>
+</head>
+<body>
+
+  <!-- the Play screen -->
+  <div id="playScreen" style="text-align: center">
+    <h1>Pet Me</h1>
+    <button id="playButton">▶ Play</button>
+  </div>
+
+  <!-- the game -->
+  <div id="gameScreen" style="text-align: center" hidden>
+    <div class="ground" id="ground"></div>
+    <div class="sky" id="sky"></div>
+    <div class="sky" id="leaves"></div>
+    <div class="stars" id="stars" hidden></div>
+    <p>
+      <button id="sunnyButton">☀️ Sunny</button>
+      <button id="rainyButton">🌧️ Rainy</button>
+      <button id="snowyButton">❄️ Snowy</button>
+    </p>
+    <p>
+      <button id="springButton">🌸 Spring</button>
+      <button id="summerButton">🌻 Summer</button>
+      <button id="autumnButton">🍂 Autumn</button>
+      <button id="winterButton">⛄ Winter</button>
+    </p>
+    <div class="panel">
+      <div class="bar-label"><span>🌙 Night time</span><span id="nightNumber"></span></div>
+      <div class="bar"><div class="fill" id="nightFill"></div></div>
+    </div>
+    <div class="dogs"><span id="mainDog"></span> <span id="friendDog" hidden></span></div>
+    <div class="pool"></div>
+    <p><button id="playdateButton"></button></p>
+
+    <!-- Saydee's bars and buttons -->
+    <div class="panel">
+      <h2 id="mainName"></h2>
+      <div class="bar-label"><span>🦴 Hunger</span><span id="mainHungerNumber"></span></div>
+      <div class="bar"><div class="fill" id="mainHungerFill"></div></div>
+      <div class="bar-label"><span>💧 Water</span><span id="mainWaterNumber"></span></div>
+      <div class="bar"><div class="fill" id="mainWaterFill"></div></div>
+      <div class="bar-label"><span>💤 Sleep</span><span id="mainSleepNumber"></span></div>
+      <div class="bar"><div class="fill" id="mainSleepFill"></div></div>
+      <div class="bar-label"><span>💖 Happiness</span><span id="mainHappyNumber"></span></div>
+      <div class="bar"><div class="fill" id="mainHappyFill"></div></div>
+      <div class="bar-label"><span>🤒 Sickness</span><span id="mainSickNumber"></span></div>
+      <div class="bar"><div class="fill" id="mainSickFill"></div></div>
+      <div class="bar-label"><span>🏊 Swimming</span><span id="mainSwimNumber"></span></div>
+      <div class="bar"><div class="fill" id="mainSwimFill"></div></div>
+      <button id="feedButton">🦴 Feed</button>
+      <button id="waterButton">💧 Water</button>
+      <button id="sleepButton">💤 Sleep</button>
+      <button id="petButton">🖐️ Pet</button>
+      <button id="swimButton">🏊 Swim</button>
+      <button id="medicineButton">💊 Medicine</button>
+    </div>
+
+    <!-- Luna's bars and buttons: only while she is visiting -->
+    <div class="panel" id="friendPanel" hidden>
+      <h2 id="friendName"></h2>
+      <div class="bar-label"><span>🦴 Hunger</span><span id="friendHungerNumber"></span></div>
+      <div class="bar"><div class="fill" id="friendHungerFill"></div></div>
+      <div class="bar-label"><span>💧 Water</span><span id="friendWaterNumber"></span></div>
+      <div class="bar"><div class="fill" id="friendWaterFill"></div></div>
+      <div class="bar-label"><span>💤 Sleep</span><span id="friendSleepNumber"></span></div>
+      <div class="bar"><div class="fill" id="friendSleepFill"></div></div>
+      <div class="bar-label"><span>💖 Happiness</span><span id="friendHappyNumber"></span></div>
+      <div class="bar"><div class="fill" id="friendHappyFill"></div></div>
+      <div class="bar-label"><span>🤒 Sickness</span><span id="friendSickNumber"></span></div>
+      <div class="bar"><div class="fill" id="friendSickFill"></div></div>
+      <div class="bar-label"><span>🏊 Swimming</span><span id="friendSwimNumber"></span></div>
+      <div class="bar"><div class="fill" id="friendSwimFill"></div></div>
+      <button id="feedFriendButton">🦴 Feed</button>
+      <button id="waterFriendButton">💧 Water</button>
+      <button id="sleepFriendButton">💤 Sleep</button>
+      <button id="petFriendButton">🖐️ Pet</button>
+      <button id="swimFriendButton">🏊 Swim</button>
+      <button id="medicineFriendButton">💊 Medicine</button>
+      <p id="goHomeText"></p>
+    </div>
+  </div>
+
+<script>
+  // ===== SETTINGS =====
+  const PET_NAME = "Saydee";        // your dog's name
+  const PET_EMOJI = "🐶";           // what your dog looks like
+  const FRIEND_NAME = "Luna";       // the dog who comes on a playdate
+  const FRIEND_EMOJI = "🐕";        // what Luna looks like
+  const VISIT_SECONDS = 30;         // how long Luna stays
+  const PLAYDATE_JOY = 20;          // how much happier playing together makes them
+  const HUNGER_DROP = 2;            // how much hunger goes down each second
+  const FEED_AMOUNT = 20;           // how much one Feed fills a tummy
+  const WATER_DROP = 2;             // how much water goes down each second
+  const DRINK_AMOUNT = 20;          // how much one Water fills a dog up
+  const SLEEP_DROP = 1;             // how much sleep goes down each second
+  const SLEEP_AMOUNT = 30;          // how much one Sleep rests a dog
+  const HAPPY_DROP = 1;            // how much happiness goes down each second
+  const HUNGRY_SADNESS = 3;         // extra sadness each second when hungry
+  const PET_AMOUNT = 15;            // how much one Pet makes a dog happier
+  const SICK_RISE = 3;              // how much the medicine bar goes up each second when hungry
+  const MEDICINE_AMOUNT = 30;       // how much one Medicine brings the bar down
+  const SWIM_WATER = 25;            // how much water swimming gives
+  const SWIM_TIRED = 15;            // how much tiredness swimming causes
+  const SWIM_SKILL = 10;            // how much swimming skill goes up each swim
+  const SPIN_TIME = 0.8;            // how many seconds one 3D spin takes
+  const SUNNY_SKY = "#BFE6FF";      // sky colour when it is sunny
+  const RAINY_SKY = "#8FA3B8";      // sky colour when it rains
+  const SNOWY_SKY = "#E8F1F8";      // sky colour when it snows
+  const RAIN_DROP = "💧";           // what falls when it rains
+  const SNOW_FLAKE = "❄️";          // what falls when it snows
+  const HOW_MANY_DROPS = 40;        // how many things fall from the sky
+  const SPRING_SKY = "#BFE6FF";     // sky colour in spring
+  const SUMMER_SKY = "#8ED4FF";     // sky colour in summer
+  const AUTUMN_SKY = "#F2DDB3";     // sky colour in autumn
+  const WINTER_SKY = "#DCEBF7";     // sky colour in winter
+  const SPRING_GRASS = "#8FD48A";   // grass colour in spring
+  const SUMMER_GRASS = "#9BD77A";   // grass colour in summer
+  const AUTUMN_GRASS = "#C9A25A";   // grass colour in autumn
+  const WINTER_GRASS = "white";     // grass colour in winter
+  const SPRING_THING = "🌸";        // what grows on the grass in spring
+  const SUMMER_THING = "🌻";        // what grows on the grass in summer
+  const WINTER_THING = "⛄";        // what stands on the grass in winter
+  const AUTUMN_LEAF = "🍂";         // what falls from the trees in autumn
+  const HOW_MANY_ON_GRASS = 12;     // how many things are on the grass
+  const NIGHT_COMES = 2;            // how fast the night bar fills up in the day
+  const NIGHT_PASSES = 4;           // how fast the night goes away again
+  const NIGHT_SKY = "#14213D";      // sky colour at night
+  const NIGHT_COLOUR = "slateblue"; // colour of the night time bar
+  const STAR = "⭐";                // what shines in the night sky
+  const HOW_MANY_STARS = 25;        // how many stars come out
+  const FULL_COLOUR = "limegreen";  // bar colour when the bar is high
+  const LOW_COLOUR = "tomato";      // bar colour when the bar is low
+  // ====================
+
+  // a Pet has a name, a hunger bar, a water bar, a sleep bar and a happiness bar
+  class Pet {
+    constructor(name) {
+      this.name = name;
+      this.hunger = 100;
+      this.water = 100;
+      this.rest = 100;
+      this.happiness = 100;
+      this.sickness = 0;
+      this.swimming = 0;
+    }
+    // this makes the bars go down, every second
+    liveOneSecond() {
+      this.hunger = Math.max(0, this.hunger - HUNGER_DROP);
+      this.water = Math.max(0, this.water - WATER_DROP);
+      this.rest = Math.max(0, this.rest - SLEEP_DROP);
+      let sadness = HAPPY_DROP;
+      if (this.hunger < 30) {
+        sadness = sadness + HUNGRY_SADNESS;
+        this.sickness = Math.min(100, this.sickness + SICK_RISE);   // hungry dogs need medicine
+        this.swimming = Math.max(0, this.swimming - 2);             // hungry dogs don't want to swim
+      }
+      this.happiness = Math.max(0, this.happiness - sadness);
+    }
+    feed()       { this.hunger = Math.min(100, this.hunger + FEED_AMOUNT); }
+    drinkWater() { this.water = Math.min(100, this.water + DRINK_AMOUNT); }
+    sleep()      { this.rest = Math.min(100, this.rest + SLEEP_AMOUNT); }
+    pet()        { this.happiness = Math.min(100, this.happiness + PET_AMOUNT); }
+    medicine()   { this.sickness = Math.max(0, this.sickness - MEDICINE_AMOUNT); }
+    swim()       { this.water = Math.min(100, this.water + SWIM_WATER); this.rest = Math.max(0, this.rest - SWIM_TIRED); this.swimming = Math.min(100, this.swimming + SWIM_SKILL); }
+    // this makes both dogs happier when they play together
+    playWith(otherDog) {
+      this.happiness = Math.min(100, this.happiness + PLAYDATE_JOY);
+      otherDog.happiness = Math.min(100, otherDog.happiness + PLAYDATE_JOY);
+    }
+  }
+
+  // the Clock slowly turns day into night and back again
+  class Clock {
+    constructor() {
+      this.night = 0;          // 0 is bright day, 100 is full night
+      this.isNight = false;
+    }
+    tick() {
+      if (this.isNight) {
+        this.night = Math.max(0, this.night - NIGHT_PASSES);
+        if (this.night === 0) this.isNight = false;    // good morning!
+      } else {
+        this.night = Math.min(100, this.night + NIGHT_COMES);
+        if (this.night === 100) this.isNight = true;   // night falls
+      }
+    }
+  }
+
+  // a Weather has a sky colour and something that falls (or nothing)
+  class Weather {
+    constructor(skyColour, fallingThing) {
+      this.skyColour = skyColour;
+      this.fallingThing = fallingThing;
+    }
+  }
+
+  const SUNNY = new Weather(SUNNY_SKY, "");
+  const RAINY = new Weather(RAINY_SKY, RAIN_DROP);
+  const SNOWY = new Weather(SNOWY_SKY, SNOW_FLAKE);
+
+  // a Season has a sky, grass, things on the grass and things that fall
+  class Season {
+    constructor(skyColour, grassColour, grassThing, fallingThing) {
+      this.skyColour = skyColour;
+      this.grassColour = grassColour;
+      this.grassThing = grassThing;
+      this.fallingThing = fallingThing;
+    }
+  }
+
+  const SPRING = new Season(SPRING_SKY, SPRING_GRASS, SPRING_THING, "");
+  const SUMMER = new Season(SUMMER_SKY, SUMMER_GRASS, SUMMER_THING, "");
+  const AUTUMN = new Season(AUTUMN_SKY, AUTUMN_GRASS, "", AUTUMN_LEAF);
+  const WINTER = new Season(WINTER_SKY, WINTER_GRASS, WINTER_THING, SNOW_FLAKE);
+
+  // the Game shows the dogs on the screen
+  class Game {
+    constructor() {
+      this.pet = new Pet(PET_NAME);
+      this.friend = new Pet(FRIEND_NAME);
+      this.visiting = false;
+      this.secondsLeft = 0;
+      this.weather = SUNNY;
+      this.season = SPRING;
+      this.clock = new Clock();
+    }
+    // this starts the game when you press Play
+    start() {
+      document.getElementById("playScreen").hidden = true;
+      document.getElementById("gameScreen").hidden = false;
+      document.getElementById("mainName").textContent = PET_EMOJI + " " + this.pet.name;
+      document.getElementById("friendName").textContent = FRIEND_EMOJI + " " + this.friend.name;
+      document.getElementById("mainDog").textContent = PET_EMOJI;
+      document.getElementById("friendDog").textContent = FRIEND_EMOJI;
+      this.setSeason(SPRING);
+      makeStars();
+      this.draw();
+      setInterval(tickTheGame, 1000);
+    }
+    // this happens every second
+    tick() {
+      const wasNight = this.clock.isNight;
+      this.clock.tick();
+      if (this.clock.isNight !== wasNight) {
+        this.paintSky();   // night fell, or morning came
+      }
+      this.pet.liveOneSecond();
+      if (this.visiting) {
+        this.friend.liveOneSecond();
+        this.secondsLeft = this.secondsLeft - 1;
+        if (this.secondsLeft === 0) {
+          this.visiting = false;   // Luna goes home
+        }
+      }
+      this.draw();
+    }
+    // this happens when you press the Playdate button
+    playdate() {
+      if (!this.visiting) {
+        this.friend = new Pet(FRIEND_NAME);   // Luna arrives
+        this.visiting = true;
+        this.secondsLeft = VISIT_SECONDS;
+      }
+      this.pet.playWith(this.friend);
+      spinDog("mainDog");
+      spinDog("friendDog");
+      this.draw();
+    }
+    // this changes the weather
+    setWeather(weather) {
+      this.weather = weather;
+      makeThingsFall("sky", weather.fallingThing);
+      this.paintSky();
+    }
+    // this changes the season
+    setSeason(season) {
+      this.season = season;
+      document.getElementById("ground").style.background = season.grassColour;
+      putThingsOnGrass(season.grassThing);
+      makeThingsFall("leaves", season.fallingThing);
+      this.paintSky();
+    }
+    // sunny days show the season's sky, rain and snow have their own sky,
+    // and at night the sky goes dark and the stars come out
+    paintSky() {
+      let sky = this.weather === SUNNY ? this.season.skyColour : this.weather.skyColour;
+      if (this.clock.isNight) sky = NIGHT_SKY;
+      document.body.style.background = sky;
+      document.body.style.color = this.clock.isNight ? "white" : "#22335B";
+      document.getElementById("stars").hidden = !this.clock.isNight;
+    }
+    // this does one thing to one dog, then draws the screen again
+    lookAfter(dog, whatToDo) {
+      if (dog === this.friend && !this.visiting) return;
+      dog[whatToDo]();
+      this.draw();
+    }
+    // this draws everything
+    draw() {
+      document.getElementById("nightFill").style.width = this.clock.night + "%";
+      document.getElementById("nightFill").style.background = NIGHT_COLOUR;
+      document.getElementById("nightNumber").textContent = this.clock.night + "%";
+      drawBars("main", this.pet);
+      drawBars("friend", this.friend);
+      document.getElementById("friendDog").hidden = !this.visiting;
+      document.getElementById("friendPanel").hidden = !this.visiting;
+      document.getElementById("goHomeText").textContent =
+        this.friend.name + " goes home in " + this.secondsLeft + " seconds";
+      document.getElementById("playdateButton").textContent = this.visiting
+        ? "🎾 Play together" : "🎾 Playdate with " + this.friend.name;
+    }
+  }
+
+  // this makes a dog do a 3D spin
+  function spinDog(id) {
+    const dog = document.getElementById(id);
+    dog.style.setProperty("--spin-time", SPIN_TIME + "s");
+    dog.classList.remove("spin");
+    void dog.offsetWidth;          // this lets the spin start again
+    dog.classList.add("spin");
+  }
+
+  // this puts stars in the night sky
+  function makeStars() {
+    const stars = document.getElementById("stars");
+    for (let i = 0; i < HOW_MANY_STARS; i++) {
+      const star = document.createElement("span");
+      star.textContent = STAR;
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 50 + "%";
+      stars.appendChild(star);
+    }
+  }
+
+  // this puts flowers or snowmen on the grass
+  function putThingsOnGrass(thing) {
+    const ground = document.getElementById("ground");
+    ground.innerHTML = "";
+    if (thing === "") return;
+    for (let i = 0; i < HOW_MANY_ON_GRASS; i++) {
+      const bit = document.createElement("span");
+      bit.textContent = thing;
+      bit.style.left = Math.random() * 95 + "%";
+      bit.style.top = Math.random() * 70 + "%";
+      ground.appendChild(bit);
+    }
+  }
+
+  // this makes rain, snow or leaves fall from the sky
+  function makeThingsFall(layer, thing) {
+    const sky = document.getElementById(layer);
+    sky.innerHTML = "";
+    if (thing === "") return;
+    for (let i = 0; i < HOW_MANY_DROPS; i++) {
+      const drop = document.createElement("span");
+      drop.textContent = thing;
+      drop.style.left = Math.random() * 100 + "%";
+      drop.style.animationDuration = (2 + Math.random() * 3) + "s";
+      drop.style.animationDelay = (-Math.random() * 5) + "s";
+      sky.appendChild(drop);
+    }
+  }
+
+  // this draws all the bars of one dog
+  function drawBars(who, dog) {
+    drawBar(who + "Hunger", dog.hunger);
+    drawBar(who + "Water", dog.water);
+    drawBar(who + "Sleep", dog.rest);
+    drawBar(who + "Happy", dog.happiness);
+    drawBar(who + "Sick", dog.sickness, true);
+    drawBar(who + "Swim", dog.swimming);
+  }
+
+  // this draws one bar: how long it is, its colour and its number
+  // (for the medicine bar, high is bad, so the colours swap)
+  function drawBar(name, value, highIsBad) {
+    const fill = document.getElementById(name + "Fill");
+    const good = highIsBad ? value < 70 : value > 30;
+    fill.style.width = value + "%";
+    fill.style.background = good ? FULL_COLOUR : LOW_COLOUR;
+    document.getElementById(name + "Number").textContent = value + "%";
+  }
+
+  const game = new Game();
+
+  function tickTheGame()     { game.tick(); }
+  function pressPlay()       { game.start(); }
+  function pressPlaydate()   { game.playdate(); }
+  function pressSunny()      { game.setWeather(SUNNY); }
+  function pressRainy()      { game.setWeather(RAINY); }
+  function pressSnowy()      { game.setWeather(SNOWY); }
+  function pressSpring()     { game.setSeason(SPRING); }
+  function pressSummer()     { game.setSeason(SUMMER); }
+  function pressAutumn()     { game.setSeason(AUTUMN); }
+  function pressWinter()     { game.setSeason(WINTER); }
+  function pressFeed()       { game.lookAfter(game.pet, "feed"); }
+  function pressWater()      { game.lookAfter(game.pet, "drinkWater"); }
+  function pressSleep()      { game.lookAfter(game.pet, "sleep"); }
+  function pressPet()        { game.lookAfter(game.pet, "pet"); }
+  function pressMedicine()   { game.lookAfter(game.pet, "medicine"); }
+  function pressSwim()      { game.lookAfter(game.pet, "swim"); spinDog("mainDog"); }
+  function pressSwimFriend(){ if (game.visiting) { game.lookAfter(game.friend, "swim"); spinDog("friendDog"); } }
+  function pressMedicineFriend() { game.lookAfter(game.friend, "medicine"); }
+  function pressFeedFriend() { game.lookAfter(game.friend, "feed"); }
+  function pressWaterFriend(){ game.lookAfter(game.friend, "drinkWater"); }
+  function pressSleepFriend(){ game.lookAfter(game.friend, "sleep"); }
+  function pressPetFriend()  { game.lookAfter(game.friend, "pet"); }
+
+  document.getElementById("playButton").addEventListener("click", pressPlay);
+  document.getElementById("playdateButton").addEventListener("click", pressPlaydate);
+  document.getElementById("sunnyButton").addEventListener("click", pressSunny);
+  document.getElementById("rainyButton").addEventListener("click", pressRainy);
+  document.getElementById("snowyButton").addEventListener("click", pressSnowy);
+  document.getElementById("springButton").addEventListener("click", pressSpring);
+  document.getElementById("summerButton").addEventListener("click", pressSummer);
+  document.getElementById("autumnButton").addEventListener("click", pressAutumn);
+  document.getElementById("winterButton").addEventListener("click", pressWinter);
+  document.getElementById("feedButton").addEventListener("click", pressFeed);
+  document.getElementById("waterButton").addEventListener("click", pressWater);
+  document.getElementById("sleepButton").addEventListener("click", pressSleep);
+  document.getElementById("petButton").addEventListener("click", pressPet);
+  document.getElementById("swimButton").addEventListener("click", pressSwim);
+  document.getElementById("swimFriendButton").addEventListener("click", pressSwimFriend);
+  document.getElementById("medicineButton").addEventListener("click", pressMedicine);
+  document.getElementById("medicineFriendButton").addEventListener("click", pressMedicineFriend);
+  document.getElementById("feedFriendButton").addEventListener("click", pressFeedFriend);
+  document.getElementById("waterFriendButton").addEventListener("click", pressWaterFriend);
+  document.getElementById("sleepFriendButton").addEventListener("click", pressSleepFriend);
+  document.getElementById("petFriendButton").addEventListener("click", pressPetFriend);
+</script>
+</body>
+</html>
