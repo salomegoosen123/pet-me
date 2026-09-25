@@ -31,6 +31,8 @@ export function useKeys(): Keys {
   const [keys] = useState<Keys>(makeKeys);
 
   useEffect(function listenForKeys(): VoidFunction {
+
+    // this remembers a key while it is held down
     function onKeyDown(event: KeyboardEvent): void {
       keys.press(event.key);
       // arrows and space must move the game, not scroll the page

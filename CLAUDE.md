@@ -207,17 +207,14 @@ she likes best B) play the old one C) a new game.
   the game has come.
 - `src/games/<name-of-game>-level-2/` – a level 2, the same way.
 - `src/Arcade.tsx` – the arcade. You add one line to its `GAMES` list when a
-  game or a save starts, and change nothing else in it.
+  game or a save starts, and keep it tidy.
 - `games/` – her first games, in plain HTML. Never changed.
 - `logbook.md` – progress, stars and badges (below)
 - `ideas.md` – games to make later. When she says "some day I want to make X",
   add it here.
-- Salomé's, never changed by you: this file, `CODING_STANDARDS.md`,
-  `package.json`, `vite.config.ts`, `tsconfig.json`, `index.html`,
-  `src/main.tsx`, `src/game-kit/`, `start-games.sh`, `Mias-Games.desktop`
-  and `.claude/`. If a game needs something `game-kit` doesn't have, write a
-  **For Salomé:** line.
-
+- Salomé's, never changed by you: this file, `package.json`, `vite.config.ts`,
+  `tsconfig.json`, `index.html`, `src/main.tsx`, `start-games.sh`,
+  `Mias-Games.desktop` and `.claude/`.
 If `logbook.md` or `ideas.md` does not exist yet, make it in the first session.
 
 ## Seeing progress: the logbook

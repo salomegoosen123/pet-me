@@ -2,11 +2,14 @@
 //   beep(440, 0.1)  a boop.   beep(880, 0.1)  a bloop.   beep(200, 0.3)  a bonk.
 let speaker: AudioContext | null = null;
 
+// the browser said no to sound; the game keeps going without it
+function ignoreNoSound(): void {}
+
 // this plays one short note: how high (in hertz) and how long (in seconds)
 export function beep(pitch: number, seconds: number): void {
   try {
     if (speaker == null) speaker = new AudioContext();
-    if (speaker.state === "suspended") void speaker.resume();
+    if (speaker.state === "suspended") speaker.resume().catch(ignoreNoSound);
     const note = speaker.createOscillator();
     const volume = speaker.createGain();
     note.frequency.value = pitch;

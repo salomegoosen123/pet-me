@@ -109,6 +109,7 @@ pet-me/
 
   ```tsx
   // CatchTheStars.tsx – the screen for Catch the Stars. Mia designed this game.
+  import type { ReactNode } from "react";
   import { useGame } from "../../game-kit/useGame";
   import { Game } from "./Game";
   import { TICK_MS } from "./settings";
@@ -119,7 +120,7 @@ pet-me/
   }
 
   // this shows the game on the screen
-  function CatchTheStars() {
+  function CatchTheStars(): ReactNode {
     const { game, drawAgain, restart } = useGame(makeGame, TICK_MS);
 
     // this happens when you press Play
