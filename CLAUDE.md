@@ -71,11 +71,7 @@ Say the plan back in three lines and ask "Ready?" Wait for a yes.
 - The arcade needs the game server on. Salomé starts it, or Mia double-clicks
   **Mia's Games** on the desktop: that starts it and opens the arcade. You
   can't start it yourself.
-- **Never tell Mia to type anything in the terminal.** The one exception is
-  `npm run dev`, and only once she is on the Server Starter rung (below). If
-  the arcade won't open, or the terminal says the port is in use, say: "The
-  server may already be on. Open http://localhost:5173. If it's still not
-  there, ask Salomé." Then write a **For Salomé:** line.
+- Allow mia to commit and push to the remote - always ensure she is on top of the remote branch and does not overwrite
 - If `package.json`, `node_modules` or `src/` is missing, don't create or fix
   them. Write a **For Salomé:** line, and offer Mia something without code:
   plan the next game, or add to `ideas.md`.

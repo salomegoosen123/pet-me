@@ -20,6 +20,192 @@
 - 2026-09-25 · Pet Me · swimming bar goes down when hungry
 - 2026-09-25 · Pet Me · a 3D look: shadows under the dogs, a tilted pool, deep bars
 - 2026-09-25 · Pet Me · the dogs do a 3D spin when they swim or play together
+- 2026-09-25 · Pet Me (arcade) · started again in the arcade: Play screen, Saydee, and a hunger bar that goes down slowly · ⭐
+- 2026-09-25 · Pet Me (arcade) · a Park button: green grass, trees and flowers, and Saydee runs around
+- 2026-09-25 · Pet Me (arcade) · a Feed button that fills her tummy
+- 2026-09-25 · Pet Me (arcade) · a water bar and a Water button
+- 2026-09-25 · Pet Me (arcade) · a sleep bar and a Sleep button
+- 2026-09-25 · Pet Me (arcade) · tidy: the bars and the park moved into their own file, pictures.tsx
+- 2026-09-25 · Pet Me (arcade) · a happiness bar and a Pet button (she gets sad faster when hungry)
+- 2026-09-25 · Pet Me (arcade) · running at the park makes hunger and water go down fast (Mia's idea!)
+- 2026-09-25 · Pet Me (arcade) · the sleep bar stays still at home, and only goes down at the park (Mia's idea!)
+- 2026-09-25 · Pet Me (arcade) · happiness goes up at the park (Mia's idea!)
+- 2026-09-25 · Pet Me (arcade) · a Pool button: blue water with ducks, and Saydee swims around
+- 2026-09-25 · Pet Me (arcade) · a 3D look: a shadow under Saydee, and deep, shiny bars
+- 2026-09-25 · Pet Me Level 2 · started as a copy of Pet Me, with its own button in the arcade
+- 2026-09-25 · Pet Me Level 2 · fetch at the park: throw a 🎾 or a 🥏, Saydee catches it, gets happier and brings it back to you · ⭐
+- 2026-09-25 · Pet Me Level 2 · you in the park are now 👱‍♀️
+- 2026-09-25 · Pet Me Level 2 · at home, Saydee sits on her round bed
+- 2026-09-25 · Pet Me Level 2 · Saydee starts as a tiny puppy and grows up when all her bars are green (Mia's idea!)
+- 2026-09-26 · Pet Me Level 2 · Zzzzzzz floats above Saydee's head on her bed
+- 2026-09-26 · Pet Me Level 2 · how much Saydee has grown is saved, so she stays that big next time (Mia's idea!)
+- 2026-09-26 · Pet Me 3D · a new game in real 3D: Saydee on her bed at home, wagging her tail, and you can spin around her
+- 2026-09-26 · Pet Me 3D · a red food bowl next to her bed, full of food
+- 2026-09-26 · Pet Me 3D · Saydee is white now
+- 2026-09-26 · Pet Me 3D · pink spots on her back, sides, head and hip
+- 2026-09-26 · Pet Me 3D · Saydee is a pitbull: wide head, big jaw, small folded ears, strong body
+- 2026-09-26 · Pet Me 3D · Saydee is a baby pitbull: smaller, with a bigger head, big eyes and a short snout
+- 2026-09-26 · Pet Me 3D · a blue water bowl on the other side of her bed
+- 2026-09-26 · Pet Me 3D · a thinner head, with a HEAD_WIDTH knob
+- 2026-09-26 · Pet Me 3D · fixed the tail so it's on her body, not hanging off
+- 2026-09-26 · Pet Me 3D · a hunger bar and a Feed button: Saydee hops to her food bowl, eats, and hops back to bed · ⭐
+- 2026-09-26 · Pet Me 3D · a water bar and a Water button: Saydee hops to her blue bowl and drinks
+- 2026-09-26 · Pet Me 3D · a Park button: a 3D park with trees and flowers, and Saydee walks around you on a red leash
+- 2026-09-26 · Pet Me 3D · you can walk in the park with the arrow keys, and Saydee follows you on her leash
+- 2026-09-26 · Pet Me 3D · you can walk at home too: Saydee follows you, and goes back to bed when you stop
+- 2026-09-26 · Pet Me 3D · a kitchen with a counter, a stove, a fridge and a table, and her bowls moved in there
+- 2026-09-26 · Pet Me 3D · two chairs at the kitchen table: walk onto one and you sit down, press an arrow key to stand up
+- 2026-09-26 · Pet Me 3D · walk up to the fridge to get an apple, then sit at the table and eat it bite by bite
+- 2026-09-26 · Pet Me 3D · puzzle fixed: sitting down was too tricky, so now you sit when you walk close to a chair
+- 2026-09-26 · Pet Me 3D · puzzle fixed: a Sit button takes you straight to a chair, and the room doesn't spin by itself any more
+- 2026-09-26 · Pet Me 3D · a bathroom with a bath, a toilet and a sink, and a Bath button: Saydee hops into the bath and bubbles come up
+- 2026-09-26 · Pet Me 3D · at the fridge you pick 🍎 Apple or 🍖 Treat. Walk up to Saydee with the treat, and she gobbles it and spins for joy
+- 2026-09-26 · Pet Me 3D · a Beach button: sand, the sea, umbrellas, and other people walking their dogs
+- 2026-09-26 · Pet Me 3D · when another dog comes near, Saydee pulls on her leash towards it and wags super fast (Mia's idea!)
+- 2026-09-26 · Pet Me 3D · your bedroom, behind Saydee's room: a big bed, a wardrobe and a lamp. Walk onto the bed to lie down, and the room goes dark 🌙
+- 2026-09-26 · Pet Me 3D · outside walls with a front door, and a red roof
+- 2026-09-26 · Pet Me 3D · the roof now comes down when you zoom in, and lifts off when you zoom out (Mia's choice)
+- 2026-09-26 · Pet Me 3D · taller walls and a higher, pointier roof, with knobs for both
+- 2026-09-26 · Pet Me 3D · the camera looks down from above, like a bird, and can't go flat any more (idea from Waldo and Mia)
+- 2026-09-26 · Pet Me 3D · the roof lifts off when you walk into the house, and comes back when you walk outside (Waldo's idea)
+- 2026-09-26 · Pet Me 3D · Saydee's bed moved into the corner of your bedroom, next to your bed, and she walks through the doors now, not the walls (Mia's idea) · ⭐
+- 2026-09-26 · Pet Me 3D · a sleep bar and a Sleep button for Saydee: she goes to her bed, droops her head and breathes slowly · ⭐
+- 2026-09-26 · Pet Me 3D · Saydee closes her eyes when she sleeps, and faces your bed when she's on hers (Mia's ideas) · ⭐
+- 2026-09-26 · Pet Me 3D · a Go to bed button: you go straight to your big bed, lie down, and it gets dark
+- 2026-09-26 · Pet Me 3D · a bigger house: every room is bigger, with everything still in it, and a HOUSE_SIZE knob · ⭐
+- 2026-09-26 · Pet Me 3D · a back yard through a back door in your bedroom: grass, a white fence, a big tree, flowers and a pink doghouse for Saydee
+- 2026-09-26 · Pet Me 3D · Saydee bumps into walls, the fence, you, and other people and dogs instead of walking through them, and uses the doors when she follows you (Mia's idea)
+- 2026-09-26 · Pet Me 3D · real doors in every doorway, which swing open when you or Saydee walk up and close behind you
+- 2026-09-26 · Pet Me 3D · doors only open when you or Saydee are right in the doorway, and they swing faster (Mia's idea)
+- 2026-09-26 · Pet Me 3D · puzzle fixed: Saydee got stuck in doorways when she followed you, and now she walks right through
+- 2026-09-26 · Pet Me 3D · you and Saydee can only go through doors now: you both bump into walls, the fence, furniture, the doghouse, trees, and people and dogs (Mia's idea)
+- 2026-09-26 · Pet Me 3D · at the beach, every little while Saydee stops and digs a hole in the sand, with a pile beside it (Mia's idea)
+- 2026-09-27 · Pet Me 3D · one bowl of food or water now fills Saydee's bar by 50
+- 2026-09-27 · Pet Me 3D · a living room by the front door: a rug, a sofa and a TV. Sit on the sofa and the TV plays cartoons (Mia's idea)
+- 2026-09-27 · Pet Me 3D · buttons pop up on Saydee's things when you walk up to them: Feed on her bowl, Water on her water bowl, Bath on the bath, Sleep on her bed (Mia's idea)
+- 2026-09-27 · Pet Me 3D · 🍎 Apple and 🍖 Treat buttons pop up on the fridge when you walk up to it
+- 2026-09-27 · Pet Me 3D · 🌳 Park and 🏖️ Beach buttons pop up on the front door when you walk up to it · ⭐
+- 2026-09-27 · Pet Me 3D · Claude turned BUTTON_SIZE from 1.3 to 3 for Mia, so the buttons are bigger (next time Mia turns it herself)
+- 2026-09-27 · Pet Me 3D · 🪑 Sit pops up on the kitchen table and the sofa, and 🛏️ Go to bed on your big bed
+- 2026-09-27 · Pet Me 3D · a playground in the park: two swings, a slide with a ladder, and a seesaw (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · a taller slide (2.4 instead of 1.4), with a SLIDE_HEIGHT knob · ⭐
+- 2026-09-27 · Pet Me 3D · a jungle gym in the playground: a climbing frame of red, gold, green and blue bars (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · you are a child now: smaller, with a bigger head for your size, and a YOU_SIZE knob (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · an 🐾 Unleash button over Saydee at the park: off her leash she zooms from tree to flower and stops to sniff. Walk up to her and press 🔗 Leash on to clip it back (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · a ▶️ Play button on the slide: you climb the ladder, step across the top and whoosh down (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · a ▶️ Play button on the swings: you sit on a seat and swing higher and higher, and an arrow key gets you off · ⭐
+- 2026-09-27 · Pet Me 3D · a ▶️ Play button on the seesaw: you sit on one end and a friend from the park sits on the other, and up and down you go (Mia's idea)
+- 2026-09-27 · Pet Me 3D · the friend on the seesaw is your brother now: the same size as you, with short hair, and knobs for his hair and shirt colours (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · Claude turned HAIR_COLOUR from gold to saddlebrown for Mia, so your hair is brown (next time Mia turns it herself)
+- 2026-09-27 · Pet Me 3D · your brother is at home too: he stands in the living room by the front door and turns to look at you (Mia's idea)
+- 2026-09-27 · Pet Me 3D · your mum and dad are at home: Mum at the kitchen counter, Dad in the living room, with knobs for their hair and shirt colours (Mia's idea)
+- 2026-09-27 · Pet Me 3D · a bedroom for your parents, behind the kitchen: a door in from the kitchen, a big bed for two with two pillows, a lamp each side, and a carpet (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · your family walks round the house: from room to room through the doors, stopping to look at you, with knobs for how fast and how long they stay (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · a bed for your brother in your room, next to yours, with a blue blanket (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · a play room next to your bedroom: a toy box with a teddy, a ball and blocks, a ball pit with 80 balls, and a purple play tent (Mia's idea)
+- 2026-09-27 · Pet Me 3D · the play room is only for you and your brother: your parents don't go in there any more, and Saydee waits outside the door in your bedroom (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · a ▶️ Play button on the jungle gym: you climb up the front, stand on top, and an arrow key makes you jump down · ⭐
+- 2026-09-27 · Pet Me 3D · your brother plays in the play room: sometimes he jumps into the ball pit and bounces about in the balls · ⭐
+- 2026-09-27 · Pet Me 3D · a frisbee at the park: when Saydee is off her leash, a 🥏 Throw button pops up over you. The frisbee flies the way you face, and Saydee catches it (or picks it up) and brings it back (Mia's idea)
+- 2026-09-27 · Arcade · Mia took Pet Me and Pet Me · Level 2 off the arcade (their files are kept safe, so they can come back)
+- 2026-09-27 · Pet Me 3D · a ▶️ Play button on the ball pit: you jump in, bounce about in the balls, and an arrow key jumps you out (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · the toy box: a 🧸 Teddy button picks up the teddy so you carry it about, and 🧸 Put back puts it back (Mia's idea)
+- 2026-09-27 · Pet Me 3D · bedtime: when you go to bed, your brother, Mum and Dad walk to their beds and lie down, and Saydee sleeps on hers. When you get up, everyone gets up (Mia's idea)
+- 2026-09-27 · Pet Me 3D · Mum makes food: she cooks at the stove, with a pot of orange soup and steam puffing up, and she goes back to cook a lot (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · Dad watches rugby: he sits on the sofa and the TV shows a rugby match, with a green pitch, a ball and players running. If you sit on the sofa too, it switches to cartoons (Mia's idea)
+- 2026-09-27 · Pet Me 3D · blankets at bedtime: when anyone lies down in bed, a blanket covers them up to their chest, the same colour as their bed (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · your family comes to the beach: Mum and Dad sunbathe on their towels and your brother sits on his, under a big orange umbrella (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · you can unleash Saydee at the beach too: she zooms to the umbrellas and along the edge of the sea, sniffing, and the frisbee works there as well (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · your own violet towel at the beach, next to Dad's: a 🏖️ Relax button lies you down in the sun, and an arrow key gets you up (Mia's idea)
+- 2026-09-27 · Pet Me 3D · your mum and dad come to the park too: they sit together on a brown bench, watching the playground (Mia's idea) · ⭐
+- 2026-09-27 · Pet Me 3D · a squeaky bone for Saydee at the park: a 🦴 Bone button over her gives it to her, and she carries it in her mouth everywhere, squeaking every few seconds (Mia's idea)
+- 2026-09-28 · Pet Me 3D · a squeakier squeak: two quick "squee-squee"s that go up and down, and a SQUEAK_PITCH knob (Mia's idea)
+- 2026-09-28 · Pet Me 3D · the squeak is "squee-squoo" now: a high squeak, then a low one (Mia's idea)
+- 2026-09-28 · Pet Me 3D · each squeak slides up, made of 10 tiny beeps one after another, so it sounds less beepy
+- 2026-09-28 · Pet Me 3D · the squeak is turned off (Mia's choice): Saydee still carries her bone, quietly. The BONE_SQUEAKS knob can turn it back on
+- 2026-09-28 · Pet Me 3D · build a sandcastle with your brother at the beach: a 🏰 Build button in front of the towels sits you both down, and the castle grows piece by piece, with towers, pointy tops and a pink flag (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · step on the sandcastle and it squashes flat into a pile of sand, then you can build it again (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · at the beach, you and your brother wear swimming costumes: a pink one for you, a blue one for him, with bare legs (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · swim in the sea: walk into the water and you bob in the waves up to your chest, and your brother runs in to swim next to you, then goes back to his towel when you come out (Mia's idea)
+- 2026-09-28 · Pet Me 3D · you choose what you wear: at your wardrobe, 👙 Costume puts on your swimming costume and 👕 Clothes puts your clothes back on. You wear it everywhere, and you can only swim in the sea in your costume (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · a swimming pool in the back yard, with a pink swimming ring: in your costume you can walk in and swim up to your chest; in your clothes the edge stops you (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · tidy: the tree has its own file now (tree.ts), so the back yard and the park don't load each other in a circle
+- 2026-09-28 · Pet Me 3D · Mum's cooking makes food now: after 5 seconds at the stove she carries a plate of food to the kitchen table and puts it down (Mia's idea)
+- 2026-09-28 · Pet Me 3D · puzzle fixed: Saydee walked on top of the pool. Now she can't go in the water, and waits at the edge nearest you while you swim (Mia's choice) · ⭐
+- 2026-09-28 · Pet Me 3D · a table for four: four chairs, two on each side, and Mum keeps cooking and carrying plates until there's a plate at every place (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · dinner together: when the table is full, a 🍽️ Dinner button sits you down, your brother, Mum and Dad come and sit in their chairs, and everyone eats bite by bite. Then the table is cleared and Mum cooks again (Mia's idea)
+- 2026-09-28 · Pet Me 3D · your brother swims with you at home: when you get in the pool, he puts on his costume, runs out the back door, jumps in and swims next to you. When you get out, he gets out and changes back (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · your brother follows you everywhere at home, through the doors (but still goes to bed, comes to dinner and swims with you). The BROTHER_FOLLOWS_YOU knob turns it off (Mia's idea)
+- 2026-09-28 · Pet Me 3D · your brother plays in the ball pit with you: when you jump in, he runs over, jumps in next to you and bounces too (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · your brother swings with you at the park: he sits on the other seat and swings the opposite way (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · your brother follows you round the park too, and hops off next to you after the swings and the seesaw (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · your brother has a go after you on the slide (climbs up behind you and whooshes down after you) and on the jungle gym (climbs up, stands next to you, and jumps down after you) (Mia's idea)
+- 2026-09-28 · Pet Me 3D · give your brother an apple: take one from the fridge, walk up to him, and a 🍎 Give button puts it in his hand. He eats it bite by bite (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · give your brother the teddy: carry it up to him and 🧸 Give puts it in his hand, and he carries it wherever he goes. 🧸 Take back gets it back (Mia's idea)
+- 2026-09-28 · Pet Me 3D · a present in your wardrobe: 🎁 Present takes out a turquoise box with a gold bow, and 🎁 Give puts it in your brother's hands (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · your brother opens his present: after a moment it shrinks away and a red toy car pops up in his hands (Mia's idea)
+- 2026-09-28 · Pet Me 3D · Ouma and Oupa come to fetch you: they wait by their blue car in your front garden, and 🚗 Ouma & Oupa takes you, your brother and Saydee to their place: a yellow cottage in a garden full of flowers (Mia's idea)
+- 2026-09-28 · Pet Me 3D · Saydee stays at home when Ouma and Oupa fetch you (Mia's choice) · ⭐
+- 2026-09-28 · Pet Me 3D · you can go inside Ouma and Oupa's cottage: a doorway, a wooden floor, and the roof lifts off when you're in. Inside: three beds, a kitchen with Ouma cooking, a sofa and a TV, a fireplace, and Oupa in his rocking chair (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · the green bed in the cottage is a big double bed with two pillows, for Ouma and Oupa (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · a table with four chairs in Ouma and Oupa's cottage, between the kitchen and the fireplace (Mia's idea)
+- 2026-09-28 · Pet Me 3D · PJs in your wardrobe: a 🌙 PJs button puts on your pink pyjamas. The wardrobe shows the outfits you're not wearing (Mia's idea)
+- 2026-09-28 · Pet Me 3D · 📺 On and 📺 Off buttons for the TV at home and the TV at Ouma and Oupa's, which is a real TV with cartoons now (Mia's idea)
+- 2026-09-28 · Pet Me 3D · when you put your PJs on at home, your brother, Mum and Dad put their PJs on too (blue for your brother, red for Mum, dark blue for Dad), and change back when you do (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · Saydee's food and water bowls moved into the kitchen corner, behind the table (Mia's idea). WALK_SECONDS went from 7 to 9, so she has time to get there
+- 2026-09-28 · Pet Me 3D · press the space bar to jump, anywhere: at home, outside, and up out of the pool or the sea. Hold it to keep bouncing (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · Claude turned JUMP_HEIGHT from 1 to 5 for Mia, so you jump super high (next time Mia turns it herself)
+- 2026-09-28 · Pet Me 3D · your brother follows you round the beach too, and after a swim he gets out and keeps following you (Mia's idea)
+- 2026-09-28 · Pet Me 3D · chat with your family at home: type in the 💬 box and press Send. Your words pop up in a bubble over your head, and whoever is closest answers in a bubble over theirs (Mia's idea)
+- 2026-09-28 · Pet Me 3D · puzzle fixed: only your brother answered (he's always closest). Now say "Mum" or "Dad" and they answer, and the chat is written under the game (Mia found it) · ⭐
+- 2026-09-28 · Pet Me 3D · your family understands more ways of writing words: anything starting with "hung" is hungry, and the same for play, sleep, dog, pup and swim (Mia found it)
+- 2026-09-28 · Pet Me 3D · your brother (and Mum and Dad) say lots of different things when they don't know your words, not just "Cool!" (Mia's idea)
+- 2026-09-28 · Pet Me 3D · a new chat answer: say you're sad, and Mum says "Come here for a hug! 🤗" (Mia chose it)
+- 2026-09-28 · Pet Me 3D · Claude turned BROTHER_FOLLOWS_YOU from true to false for Mia, so your brother does his own thing again (next time Mia turns it herself)
+- 2026-09-28 · Pet Me 3D · tell your brother in the chat: "follow me" and he follows you everywhere (home, park, beach, Ouma and Oupa's), "stay" or "stop" and he does his own thing (Mia's idea)
+- 2026-09-28 · Pet Me 3D · you can chat with Saydee too: say "Saydee" and she answers in dog talk, with woofs, tail wags and snuggles, in a bubble over her head (Mia's idea)
+- 2026-09-28 · Pet Me 3D · you're a baby now: YOU_SIZE went from 0.7 to 0.4, with a big baby head. Your brother stays his size (a new BROTHER_SIZE knob), and a baby floats higher in the water so your head stays out (Mia's idea)
+- 2026-09-28 · Pet Me 3D · ride on Saydee's back at home: 🐶 Ride pops up over her, the arrow keys make her walk with you on her back, and 👋 Get off hops you down (Mia's idea)
+- 2026-09-28 · Pet Me 3D · ride Saydee at the park and the beach too (her leash comes off while you ride, and she stays out of the sea) (Mia's idea)
+- 2026-09-28 · Pet Me 3D · bad guys at the park: two masked bad guys hide at the edge, and sneak up on you when Saydee is off her leash and far away. Saydee always saves you: she barks "WOOF! WOOF!", races back and stays by your side, and they run away (Mia's idea). Mia found a puzzle: the park wouldn't open, because a piece was missing from the riding step. Fixed
+- 2026-09-28 · Pet Me 3D · BAD_GUY_SPEED from 1.2 to 2.5, then 3, so the bad guys sneak up fast (Mia's choice, Claude turned it)
+- 2026-09-28 · Pet Me 3D · now the bad guys can grab you at the park and carry you off to their secret hideout under your home! The floor goes see-through so you can see down there. Saydee doesn't know where you are, so she sniffs around the house (her bed, the bathroom, her bowl), then the trapdoor: "I smell you!" She barks "WOOF! WOOF!", the bad guys run away down their tunnel, and you climb out (Mia's idea). Mia read the big red words and told Claude what they said: two lines in settings.ts had got stuck together, so the game couldn't find BROTHER_HAIR_COLOUR. Fixed · ⭐
+- 2026-09-28 · Pet Me 3D · shout HELP in the chat from the hideout: Saydee hears you ("WOOF?! I hear you!"), stops sniffing and runs straight to the trapdoor (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · bad guys at night! When you've been asleep a little while, they creep in the front door, lift you out of bed and carry you down the trapdoor to their hideout. Then the police come: their car drives up with its lights flashing, two police officers walk in, find you, say "Police! You're under arrest!", and drive the bad guys away. New knob: NIGHT_BAD_GUYS_SECONDS (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · sneak into the bad guys' base! The end of their secret tunnel is hidden behind the big tree in the back yard: press 🕳️ Go in. A wolf lives down there, and it scratches you ("Ouch!"). Shout HELP in the chat: Saydee runs through the house, dives into the tunnel, barks "WOOF! WOOF!", and the wolf runs away. 🕳️ Go out takes you back to the yard. New knob: WOLF_COLOUR (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · get in and out of the bad guys' base through the trapdoor too: 🪜 Go down at the trapdoor in the middle room, and 🪜 Go up at the bottom of the ladder (Mia's idea)
+- 2026-09-28 · Pet Me 3D · a school for your brother, across the road from your home! In the morning (when you get up after sleeping) he puts his orange school bag on, says "Bye! I'm off to school!", walks there and goes in. After a while he walks home: "I'm home!" New knobs: SCHOOL_SECONDS, SCHOOL_COLOUR, SCHOOL_BAG_COLOUR (Mia's idea) · ⭐
+- 2026-09-28 · Pet Me 3D · SCHOOL_SECONDS from 30 to 120, so your brother stays at school for 2 minutes (Mia's choice, Claude turned it)
+- 2026-09-28 · Pet Me 3D · once the police take the bad guys to jail, they never come back: not at night, and not at the park (a new game brings them back) (Mia's idea)
+- 2026-09-28 · Pet Me 3D · a daycare next to your brother's school: a little pink building with a purple pointy roof, and a wonky stack of baby blocks by the door. New knobs: DAYCARE_COLOUR, DAYCARE_ROOF_COLOUR (Mia's idea)
+- 2026-09-28 · Pet Me 3D · walk out the front garden, across the road and into the daycare: its roof lifts off, and it's full of children toddling about and watching you. New knobs: DAYCARE_CHILDREN, DAYCARE_SHIRT_COLOURS (Mia's idea)
+- 2026-09-28 · Pet Me 3D · 2 little tables in the daycare, with 4 little chairs round each one (red, yellow, green and blue). The children toddle round them. New knobs: DAYCARE_TABLE_COLOUR, DAYCARE_CHAIR_COLOURS (Mia's idea)
+- 2026-09-28 · Pet Me 3D · YOU_SIZE from 0.4 to 0.7, the same size as your brother (Mia's choice, Claude turned it)
+- 2026-09-28 · Pet Me 3D · build a tower of blocks in the play room, near the toy box: 🧱 Add block puts one more on top (in rainbow colours), and 💥 Knock down sends them all tumbling onto the floor. New knobs: TOWER_MOST_BLOCKS, TOWER_BLOCK_COLOURS (Mia's idea)
+- 2026-09-28 · Pet Me 3D · after you knock the tower down, you tidy up: walk to each block and it jumps back into the toy box. When they're all put away, you can build a new tower (Mia's idea)
+- 2026-09-28 · Pet Me 3D · go to school with your brother! In the morning you get a pink school bag too. He walks to school and waits for you at the door. Press 🏫 Go in, and you both go in. When school's out, you come out together and walk home. New knob: YOUR_SCHOOL_BAG_COLOUR (Mia's idea)
+- 2026-09-28 · Pet Me 3D · Mia got stuck in school for 2 minutes, so now there's a 🚪 Leave button while you're in school: you come out any time (your brother stays till the end) (Mia's idea)
+- 2026-09-28 · Pet Me 3D · walk into the school any time! Its roof lifts off, and inside there's a classroom: 12 desks, a board, a teacher who says "Good morning! Welcome to class!", and 7 children at their desks. Your brother walks in and sits at his desk too. No more Go in and Leave buttons: you walk in and out the door. New knobs: SCHOOL_CHILDREN, SCHOOL_DESK_COLOUR, TEACHER_SHIRT_COLOUR (Mia's idea)
+- 2026-09-28 · Pet Me 3D · sit at a desk at school: walk up to a free chair (the back row) and you sit down, just like the kitchen chairs (Mia's idea)
+- 2026-09-28 · Pet Me 3D · school uniforms: a green top and grey bottoms. In the morning you put yours on, your brother wears his to school, and all the children in class wear them too. Change back at your wardrobe. New knobs: SCHOOL_UNIFORM_TOP, SCHOOL_UNIFORM_BOTTOMS (Mia's idea) · ⭐
+- 2026-09-29 · Pet Me 3D · the game wouldn't load ("Failed to fetch…"): the game server was stuck, not the code. Mia fixed it herself by closing the game server and starting it again! 🛠️
+- 2026-09-29 · Pet Me 3D · 2 bullies in class, with red caps on backwards. While you're in class, every now and then one turns round and says something mean. The teacher turns and says "Stop that! That's not kind!", and they turn back to the front. New knobs: SCHOOL_BULLIES, BULLY_CAP_COLOUR, BULLY_SECONDS, BULLY_WORDS (Mia's idea)
+- 2026-09-29 · Pet Me 3D · the 5 smart children in class wear round glasses, and each has a book open on their desk. New knobs: GLASSES_COLOUR, BOOK_COLOURS (Mia's idea) · next: toys fly out of the toy box like a fountain. Then: more at Ouma and Oupa's. Then ask Mia: keep the buttons at the bottom, or take them away? Also from before: sickness, swimming and night time bars
+- 2026-10-02 · Candy Land · a new game! The Play screen, then you and your family (👨👩👦👧) running in a line on pink candy ground. Press space and you all jump together. Knobs: FAMILY, FAMILY_SIZE, JUMP_SPEED, GRAVITY, SKY_COLOUR, GROUND_COLOUR (Mia's idea) · ⭐
+- 2026-10-02 · Candy Land · rocks 🪨 roll in from the right, spinning, every couple of seconds (they don't hit you yet). New knobs: ROCK, ROCK_SIZE, ROCK_SPEED, ROCK_SECONDS (Mia's idea) · ⭐
+- 2026-10-02 · Candy Land · if a rock bumps into any of you, it's Game Over: "A rock got you!" and Play Again. The jump is floatier now (JUMP_SPEED 13, GRAVITY 0.7) and your line is closer together, so you can all get over a rock in one jump (Mia's idea) · ⭐ · Mia says: too hard! · next: try GRAVITY 0.5 (floatier, easier). Then: a point for each rock you jump, and your best score
+- 2026-10-03 · Popcorn Land · a new game! Plan: jump from cloud to cloud, pop 10 balloons to win, fall off 3 times and it's Game Over. Step one: the Play screen, then you (👧) on a big cloud: the arrow keys walk you, space makes you jump. Knobs: YOU, YOU_SIZE, WALK_SPEED, JUMP_SPEED, GRAVITY, SKY_COLOUR, CLOUD_COLOUR (Mia's idea) · ⭐
+- 2026-10-03 · Popcorn Land · 6 more clouds up in the sky, to jump onto from below (you can jump up through a cloud and land on top of it). New knob: CLOUDS, a list with one cloud per line (Mia's idea) · ⭐
+- 2026-10-03 · Popcorn Land · balloons 🎈 float up from the bottom of the sky, swaying, past the clouds (you can't pop them yet). New knobs: BALLOON, BALLOON_SIZE, BALLOON_SPEED, BALLOON_SECONDS (Mia's idea)
+- 2026-10-03 · Popcorn Land · the sky goes up forever! When you climb past halfway up the screen, the screen follows you up, and new clouds keep appearing above you (always close enough to jump to). If you fall off the bottom of the screen, for now you pop back onto the lowest cloud. New knobs: CLOUD_GAP, CLOUD_WIDE (Mia's idea)
+- 2026-10-03 · Popcorn Land · touch a balloon and it pops: it disappears (Mia's idea) · ⭐ 
+- 2026-10-03 · Popcorn Land · a balloon counter (🎈 3 / 10) over the sky, and when you pop 10 you win: "🎉 You win! 🎉" and Play Again. New knob: WIN_AT (Mia's idea) · ⭐
+- 2026-10-03 · Popcorn Land · 3 lives ❤️❤️❤️: falling off the bottom of the screen costs one (you pop back onto a cloud). Lose them all and it's Game Over, with how many balloons you popped and Play Again. New knob: LIVES (Mia's idea) · ⭐ · Mia says: it's fine!
+- 2026-10-03 · Popcorn Land · your best score (the most balloons you've ever popped) is saved in the browser, and shows on the win and Game Over screens, with "⭐ New best! ⭐" when you beat it (Mia's idea) · next: test it on a real person!
+- 2026-10-03 · Pet Me 3D · when you bounce in the ball pit (your brother jumps in too), balls fly out everywhere and land on the play room floor. Then you tidy up: walk to each ball and it jumps back into the pit. New knobs: BALLS_FLY_OUT_SECONDS, MOST_BALLS_OUT (Mia's idea)
+- 2026-10-03 · Pet Me 3D · when there's a mess in the play room (balls on the floor, or a knocked-down tower), Mum comes to the play room door: "Clean up your room! 🧹". She says it again every 8 seconds until it's tidy, then "Well done! ✨" and goes back to what she was doing (Mia's idea)
+- 2026-10-03 · Pet Me 3D · every time you tidy up, Mum says "Well done! Here's a star! ⭐" and puts a gold star on your shirt. They add up, three in a row (up to 9), and you wear them to the park and the beach too. New knob: STAR_COLOUR (Mia's idea) · ⭐ (Mia filled all 3 rows!)
+- 2026-10-03 · Pet Me 3D · the toy fountain! Press ⛲ Fountain at the toy box and blocks, balls and little cars shoot out for 3 seconds and land all over the play room. A mess, so Mum comes! Tidy up by walking to each toy: it jumps back into the toy box. New knobs: FOUNTAIN_SECONDS, MOST_TOYS_OUT, TOY_COLOURS (Mia's idea) · next: more at Ouma and Oupa's
 
 ## Finished
 
@@ -28,7 +214,10 @@
 ## Words I know
 
 - **save** – keeping a copy of your game so it is still there next time
+- **server** – the program on the computer that runs your games, so the browser can show them. If it gets stuck, turn it off and on again
+- **bug** – a mistake that makes a game go wrong. Finding and fixing it is a puzzle
 
 ## Badges
 
-(none yet)
+- 🏅 First Play – pressed Play on her own game in the arcade (2026-09-25)
+- 🏅 Game Over – Candy Land is a game you can lose and play again (2026-10-02)

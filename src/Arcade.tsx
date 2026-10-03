@@ -13,7 +13,13 @@ interface GameEntry {
 
 // every game and every save, newest first. To add one, copy a line:
 // { name: "Catch the Stars", folder: "catch-the-stars", screen: lazy(function loadCatchTheStars() { return import("./games/catch-the-stars/CatchTheStars"); }) },
-const GAMES: GameEntry[] = [];
+const GAMES: GameEntry[] = [
+  { name: "Popcorn Land", folder: "popcorn-land", screen: lazy(function loadPopcornLand() { return import("./games/popcorn-land/PopcornLand"); }) },
+  { name: "Candy Land", folder: "candy-land", screen: lazy(function loadCandyLand() { return import("./games/candy-land/CandyLand"); }) },
+  { name: "Pet Me 3D", folder: "pet-me-3d", screen: lazy(function loadPetMe3D() { return import("./games/pet-me-3d/PetMe3D"); }) },
+];
+// Mia took "Pet Me" (pet-me) and "Pet Me · Level 2" (pet-me-level-2) off the arcade on 2026-09-27.
+// Their folders are still there, so either can come back with a line like the Pet Me 3D one.
 
 // one of her first games, in plain HTML, from before the arcade
 interface FirstGame {

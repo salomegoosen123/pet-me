@@ -4,5 +4,17 @@
   "permissions": {
     "defaultMode": "acceptEdits",
     "deny": ["Bash", "WebFetch", "WebSearch", "Artifact"]
-  }
+  },
+  "hooks": {
+  "SessionStart": [
+    { "hooks": [
+      { "type": "command", "command": "date +%s > /tmp/claude-session-start" },
+      { "type": "command", "command": "bash .claude/hooks/check-time-limit.sh" }
+    ]}
+  ],
+  "Stop": [
+    { "hooks": [{ "type": "command", "command": "bash .claude/hooks/record-time.sh" }] }
+  ]
+}
+
 }
